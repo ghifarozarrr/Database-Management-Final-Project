@@ -1,3 +1,18 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+  }
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: login.php");
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +43,23 @@
 
   <body id="page-top">
 
+    <div class="content">
+    <!-- notification message -->
+    <?php if (isset($_SESSION['success'])) : ?>
+      <div class="error success" >
+        <h3>
+          <?php 
+            echo $_SESSION['success']; 
+            unset($_SESSION['success']);
+          ?>
+        </h3>
+      </div>
+    <?php endif ?>
+
+    <!-- logged in user information -->
+    
+  </div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
       <div class="container">
@@ -39,10 +71,20 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
+              <?php  if (isset($_SESSION['username'])) : ?>
+                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">Hi <strong><?php echo $_SESSION['username']; ?>!</strong></a>
+                <?php endif ?>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Administrasi</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Informasi</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <?php  if (isset($_SESSION['username'])) : ?>
+             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'">logout</a>
+                <?php endif ?>
             </li>
           </ul>
         </div>
