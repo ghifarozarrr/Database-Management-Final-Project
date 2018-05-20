@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Layanan AJS</title>
+    <title>TRIGGER</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -102,9 +102,21 @@
         </tbody>
       </table>
       <div style="display: flex; justify-content: center;">
-        <button class="btn btn-primary btn-lg" style="margin: 2px;">Insert</button>
-        <button class="btn btn-primary btn-lg" style="margin: 2px;">Update</button>
-        <button class="btn btn-primary btn-lg" style="margin: 2px;">Delete</button>
+        <button class="btn btn-primary btn-lg" style="margin: 2px;">
+          <span class="fa fa-plus">
+            Insert
+          </span>
+        </button>
+        <button class="btn btn-primary btn-lg" style="margin: 2px;">
+          <span class="fa fa-edit">
+            Update
+          </span>
+        </button>
+        <button class="btn btn-primary btn-lg" style="margin: 2px;">
+          <span class="fa fa-trash">
+            Delete
+          </span>
+        </button>
       </div>
     </div>
     
