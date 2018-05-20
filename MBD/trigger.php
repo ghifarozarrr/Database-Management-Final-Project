@@ -39,6 +39,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#trig1">Trigger 1</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#trig2">Trigger 2</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Informasi</a>
             </li>
           </ul>
@@ -47,7 +53,7 @@
     </nav>
 
     <!-- Header -->
-    <header class="masthead bg-primary text-white text-center">
+    <header class="masthead bg-primary text-white text-center" id="trig1">
       <div class="container">
         <h1 class="text-uppercase mb-0">TRIGGER</h1>
         <hr class="star-light">
@@ -95,15 +101,15 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div style="padding-left: 550px;">
-      <button style="padding: 10px;">Insert</button>
-      <button style="padding: 10px;">Update</button>
-      <button style="padding: 10px;">Delete</button>  
+      <div style="display: flex; justify-content: center;">
+        <button class="btn btn-primary btn-lg" style="margin: 2px;">Insert</button>
+        <button class="btn btn-primary btn-lg" style="margin: 2px;">Update</button>
+        <button class="btn btn-primary btn-lg" style="margin: 2px;">Delete</button>
+      </div>
     </div>
     
     <br>
-    <header class="masthead bg-primary text-white text-center" style="padding-top: 4rem;">
+    <header class="masthead bg-primary text-white text-center" style="padding-top: 4rem;" id="trig2">
       <div class="container">
         <hr class="star-light">
         <h2 class="font-weight-light mb-0">Daerah dan Jumlah Penjemputan</h2>
