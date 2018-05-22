@@ -15,6 +15,7 @@ if (isset($_POST['reg_user'])) {
   $name = mysqli_real_escape_string($db, $_POST['name']);
   $telp = mysqli_real_escape_string($db, $_POST['telp']);
   $gender = mysqli_real_escape_string($db, $_POST['gender']);
+  $alamat = mysqli_real_escape_string($db, $_POST['alamat']);
   $rumah = mysqli_real_escape_string($db, $_POST['rumah']);
   $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);
   $username = mysqli_real_escape_string($db, $_POST['username']);
@@ -27,6 +28,7 @@ if (isset($_POST['reg_user'])) {
   if (empty($name)) { array_push($errors, "Nama is required"); }
   if (empty($telp)) { array_push($errors, "Telp is required"); }
   if (empty($gender)) { array_push($errors, "Gender is required"); }
+  if (empty($alamat)) { array_push($errors, "Alamat is required"); }
   if (empty($rumah)) { array_push($errors, "Rumah is required"); }
   if (empty($sekolah)) { array_push($errors, "Password is required"); }
   if (empty($username)) { array_push($errors, "Username is required"); }
@@ -58,7 +60,10 @@ if (isset($_POST['reg_user'])) {
     
   	$query = "INSERT INTO penumpang (tt_id, tj_id, p_nama, p_telp, p_gender, p_username, p_email, p_password) 
   			  VALUES('$sekolah','$rumah','$name','$telp','$gender','$username', '$email', '$password')";
+    $query1 = "INSERT INTO titik_jemput (alamat, rumah) 
+          VALUES('$tj_alamat','$tj_daerah')";
   	mysqli_query($db, $query);
+    mysqli_query($db, $query1);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
   	header('location: index.php');
