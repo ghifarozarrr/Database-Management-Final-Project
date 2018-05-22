@@ -13,7 +13,7 @@
 	
   <form method="post" action="register.php">
   	<?php include('errors.php'); ?>
-    <div class="input-group">
+  <!--   <div class="input-group">
       <label>Nama</label>
       <input type="text" name="name">
     </div>
@@ -29,44 +29,24 @@
     <div class="input-group">
       <label>Alamat Rumah</label>
       <input type="text" name="alamat">
-    </div>
+    </div> -->
     <div class="input-group">
       <label>Daerah Rumah</label>
       <!-- <input type="text" name="rumah"> -->
 
-      <select name="rumah">
+      <select name="rumah"">
       <?php
-        $categorylist_sql1="SELECT * FROM titik_jemput";
-      // $categorylist_sql1="SELECT * FROM titik_jemput WHERE tj_daerah = (SELECT DISTINCT tj_daerah FROM titik_jemput)";
+        $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
         $categorylist_query1=mysqli_query($db, $categorylist_sql1);
         $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
-
+        
         do{ ?>
-          <option value="<?php echo $categorylist_rs['tj_id']; ?>"
-            ><?php echo $categorylist_rs1['tj_daerah']; ?></option>
+          <option>
+            <?php echo $categorylist_rs1['tt_daerah']; ?>
+          </option>
         <?php
         } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
         ?></select>
-
-    </div>
-
-    <div class="input-group">
-      <label>Sekolah</label>
-      <!-- <input type="text" name="sekolah"> -->
-
-      <select name="sekolah">
-      <?php
-        $categorylist_sql="SELECT * FROM titik_tujuan";
-        $categorylist_query=mysqli_query($db, $categorylist_sql);
-        $categorylist_rs=mysqli_fetch_assoc($categorylist_query);
-
-        do{ ?>
-          <option value="<?php echo $categorylist_rs['tt_id']; ?>"
-            ><?php echo $categorylist_rs['tt_deskripsi']; ?></option>
-        <?php
-        } while($categorylist_rs=mysqli_fetch_assoc($categorylist_query));
-        ?></select>
-
 
     </div>
 
@@ -87,7 +67,7 @@
   	  <input type="password" name="password_2">
   	</div>
   	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
+  	  <button type="submit" class="btn" name="reg_user">Next</button>
   	</div>
   	<p>
   		Already a member? <a href="login.php">Sign in</a>
