@@ -84,12 +84,6 @@ input[type="button"]:hover:not(.active) {
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-     <!--        <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#tagihan">View 1</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#daerah">View 2</a>
-            </li> -->
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Informasi</a>
             </li>
@@ -99,47 +93,44 @@ input[type="button"]:hover:not(.active) {
     </nav>
 
     <!-- Header -->
-    <header class="masthead bg-primary text-white text-center" id="tagihan">
+    <header class="masthead bg-primary text-white text-center" id="daerah">
       <div class="container">
         <h1 class="text-uppercase mb-0">VIEW</h1>
         <hr class="star-light">
-        <h2 class="font-weight-light mb-0">Siswa yang Belum Membayar</h2>
+        <h2 class="font-weight-light mb-0">Daerah dan Jumlah Penjemputan</h2>
       </div>
     </header>
     <br>
-
     <div class="container">
       <table class="table table-hover table-bordered results">
-         <?php
+        <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
-          ?>
+          $result1 = mysqli_query($db,"SELECT titik_jemput.tj_daerah, COUNT(penumpang.`tj_id`) AS jumlah FROM penumpang, titik_jemput WHERE penumpang.`tj_id`=titik_jemput.`tj_id` GROUP BY titik_jemput.tj_daerah ORDER BY COUNT(penumpang.`tj_id`) DESC");
+        ?>
         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
         </div>
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">No</th>
-            <th scope="col">Nama Siswa</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Tagihan Biaya</th>
+            <th scope="col">No.</th>
+            <th scope="col">Daerah Jemput</th>
+            <th scope="col">Jumlah Penumpang</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php
               $i = 1;
-              while($row = mysqli_fetch_array($result))
+              while($row1 = mysqli_fetch_array($result1))
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row1['tj_daerah'] . "</td>";
+                echo "<td>" . $row1['jumlah'] . "</td>";
                 echo "</tr>";
                 $i++;
               }
@@ -149,6 +140,7 @@ input[type="button"]:hover:not(.active) {
         </tbody>
       </table>
     </div>
+
     <!-- Footer -->
     <footer class="footer text-center">
       <div class="container">
@@ -239,96 +231,4 @@ input[type="button"]:hover:not(.active) {
     else {$('.no-result').hide();}
       });
 });
-
-// // get the table element
-// var $table = document.getElementById("myTable"),
-// // number of rows per page
-// $n = 10,
-// // number of rows of the table
-// $rowCount = $table.rows.length,
-// // get the first cell's tag name (in the first row)
-// $firstRow = $table.rows[0].firstElementChild.tagName,
-// // boolean var to check if table has a head row
-// $hasHead = ($firstRow === "TH"),
-// // an array to hold each row
-// $tr = [],
-// // loop counters, to start count from rows[1] (2nd row) if the first row has a head tag
-// $i,$ii,$j = ($hasHead)?1:0,
-// // holds the first row if it has a (<TH>) & nothing if (<TD>)
-// $th = ($hasHead?$table.rows[(0)].outerHTML:"");
-// // count the number of pages
-// var $pageCount = Math.ceil($rowCount / $n);
-// // if we had one page only, then we have nothing to do ..
-// if ($pageCount > 1) {
-//   // assign each row outHTML (tag name & innerHTML) to the array
-//   for ($i = $j,$ii = 0; $i < $rowCount; $i++, $ii++)
-//     $tr[$ii] = $table.rows[$i].outerHTML;
-//   // create a div block to hold the buttons
-//   $table.insertAdjacentHTML("afterend","<div id='buttons'></div");
-//   // the first sort, default page is the first one
-//   sort(1);
-// }
-
-// // ($p) is the selected page number. it will be generated when a user clicks a button
-// function sort($p) {
-//   /* create ($rows) a variable to hold the group of rows
-//   ** to be displayed on the selected page,
-//   ** ($s) the start point .. the first row in each page, Do The Math
-//   */
-//   var $rows = $th,$s = (($n * $p)-$n);
-//   for ($i = $s; $i < ($s+$n) && $i < $tr.length; $i++)
-//     $rows += $tr[$i];
-  
-//   // now the table has a processed group of rows ..
-//   $table.innerHTML = $rows;
-//   // create the pagination buttons
-//   document.getElementById("buttons").innerHTML = pageButtons($pageCount,$p);
-//   // CSS Stuff
-//   document.getElementById("id"+$p).setAttribute("class","active");
-// }
-
-
-// // ($pCount) : number of pages,($cur) : current page, the selected one ..
-// function pageButtons($pCount,$cur) {
-//   /* this variables will disable the "Prev" button on 1st page
-//      and "next" button on the last one */
-//   var $prevDis = ($cur == 1)?"disabled":"",
-//     $nextDis = ($cur == $pCount)?"disabled":"",
-//     /* this ($buttons) will hold every single button needed
-//     ** it will creates each button and sets the onclick attribute
-//     ** to the "sort" function with a special ($p) number..
-//     */
-//     $buttons = "<input type='button' value='&lt;&lt; Prev' onclick='sort("+($cur - 1)+")' "+$prevDis+">";
-//   for ($i=1; $i<=$pCount;$i++)
-//     $buttons += "<input type='button' id='id"+$i+"'value='"+$i+"' onclick='sort("+$i+")'>";
-//   $buttons += "<input type='button' value='Next &gt;&gt;' onclick='sort("+($cur + 1)+")' "+$nextDis+">";
-//   return $buttons;
-// }
-
-// $(document).ready(function() {
-//   $(".search").keyup(function () {
-//     var searchTerm = $(".search").val();
-//     var listItem = $('.results tbody').children('tr');
-//     var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-    
-//   $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-//         return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-//     }
-//   });
-    
-//   $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-//     $(this).attr('visible','false');
-//   });
-
-//   $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-//     $(this).attr('visible','true');
-//   });
-
-//   var jobCount = $('.results tbody tr[visible="true"]').length;
-//     $('.counter').text(jobCount + ' item');
-
-//   if(jobCount == '0') {$('.no-result').show();}
-//     else {$('.no-result').hide();}
-//       });
-// });
 </script>
