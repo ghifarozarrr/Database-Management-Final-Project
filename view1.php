@@ -2,31 +2,9 @@
 
 <style type="text/css">
 
-  *{
-      text-align:center;
-  }
- /* input[type="button"] {
-  transition: all .3s;
-    border: 1px solid #ddd;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 5px;
-  font-size: 15px;
-
+*{
+	text-align:center;
 }
-
-input[type="button"]:not(.active) {
-  background-color:transparent;
-}
-
-.active {
-  background-color: #ff4d4d;
-  color :#fff;
-}
-
-input[type="button"]:hover:not(.active) {
-  background-color: #ddd;
-}*/
 
 .results tr[visible='false'],
 .no-result{
@@ -69,6 +47,7 @@ input[type="button"]:hover:not(.active) {
 
     <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
+   <!--  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
   </head>
 
@@ -101,7 +80,20 @@ input[type="button"]:hover:not(.active) {
       </div>
     </header>
     <br>
-    <div class="container">
+
+    <div class="w3-container">
+
+  <div class="w3-row">
+    <a href="javascript:void(0)" onclick="openCity(event, 'London');">
+      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">London</div>
+    </a>
+    <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
+      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Paris</div>
+    </a>
+  </div>
+
+  <div id="London" class="w3-container city" style="display:none">
+        <div class="container">
       <table class="table table-hover table-bordered results">
         <?php
           if (mysqli_connect_errno())
@@ -140,6 +132,53 @@ input[type="button"]:hover:not(.active) {
         </tbody>
       </table>
     </div>
+  </div>
+
+  <div id="Paris" class="w3-container city" style="display:none">
+            <div class="container">
+      <table class="table table-hover table-bordered results">
+        <?php
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          $result2 = mysqli_query($db,"SELECT titik_tujuan.tt_daerah, COUNT(penumpang.`tt_id`) AS jumlah FROM penumpang, titik_tujuan WHERE penumpang.`tt_id`=titik_tujuan.`tt_id` GROUP BY titik_tujuan.tt_daerah ORDER BY COUNT(penumpang.`tt_id`) DESC");
+        ?>
+        <div class="form-group pull-right">
+          <input type="text" class="search form-control" placeholder="What you looking for?">
+        </div>
+        <span class="counter pull-right"></span>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Daerah Tujuan</th>
+            <th scope="col">Jumlah Penumpang</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              $i = 1;
+              while($row2 = mysqli_fetch_array($result2))
+              {
+                echo "<tr>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $row2['tt_daerah'] . "</td>";
+                echo "<td>" . $row2['jumlah'] . "</td>";
+                echo "</tr>";
+                $i++;
+              }
+              // mysqli_close($db);
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
 
     <!-- Footer -->
     <footer class="footer text-center">
@@ -231,4 +270,18 @@ input[type="button"]:hover:not(.active) {
     else {$('.no-result').hide();}
       });
 });
+
+  function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-red";
+}
 </script>
