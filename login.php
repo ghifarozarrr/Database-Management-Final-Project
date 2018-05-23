@@ -90,7 +90,7 @@
                             <br>
                             <div align="center">
                                 <strong>
-                                <p style="padding-top: 40px;">Not yet a member? <a href="register.php">Sign up!</a></p>    
+                                <p style="padding-top: 40px;">Not yet a member? <a style="color: #f5f7d4;" href="register.php">Sign up!</a></p>    
                                 </strong>                                
                             </div>
                         </div>
