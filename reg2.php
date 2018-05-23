@@ -11,7 +11,7 @@
   	<h2>Register</h2>
   </div>
 	
-  <form method="post" action="register.php">
+  <form method="post" action="reg2.php">
   	<?php include('errors.php'); ?>
 
     <div class="input-group">
@@ -26,8 +26,11 @@
         $categorylist_rs=mysqli_fetch_assoc($categorylist_query);
 
         do{ ?>
-          <option value="<?php echo $categorylist_rs['tt_id']; ?>"
-            ><?php echo $categorylist_rs['tt_deskripsi']; ?></option>
+          <option>
+            <?php 
+              echo $categorylist_rs['tt_deskripsi']; 
+            ?>
+          </option>
         <?php
         } while($categorylist_rs=mysqli_fetch_assoc($categorylist_query));
         ?></select>
@@ -41,16 +44,5 @@
   		Already a member? <a href="login.php">Sign in</a>
   	</p>
   </form>
-  <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
-  <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-  <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
-  <script type="text/javascript">
-   function load(){
-       var selected_option_value=$("#rumah option:selected").val(); //get the value of the current selected option.
-
-       $.post("register.php", {option_value: selected_option_value}
-       );
-  } 
-  </script>
 </body>
 </html>
