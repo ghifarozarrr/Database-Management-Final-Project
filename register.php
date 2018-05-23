@@ -13,30 +13,36 @@
   	<?php include('errors.php'); ?>
     <div class="input-group">
       <label>Nama</label>
-      <input type="text" name="name">
+      <input type="text" name="name" value="<?php echo $name; ?>">
     </div>
     <div class="input-group">
       <label>No. Telp</label>
-      <input type="text" name="telp">
+      <input type="text" name="telp" value="<?php echo $telp; ?>">
     </div>
     <div class="input-group">
       <label>
         Jenis Kelamin
       </label>
-      <input type="radio" name="gender" value="L" checked>L<br>
-      <input type="radio" name="gender" value="P">P<br>
+      <?php if ($gender == 'P') : ?>
+        <input type="radio" name="gender" value="L">L<br>
+        <input type="radio" name="gender" value="P" checked="">P<br>
+      <?php else : ?>
+        <input type="radio" name="gender" value="L" checked>L<br>
+        <input type="radio" name="gender" value="P">P<br>
+      <?php endif ?>
     </div>
     <div class="input-group">
       <label>
         Alamat Rumah
       </label>
-      <input type="text" name="alamat">
+      <input type="text" name="alamat" value="<?php echo $alamat; ?>">
     </div>
     <div class="input-group">
       <label>
         Daerah Rumah
       </label>
       <select name="rumah"">
+      <option selected hidden><?php echo $rumah; ?></option>
       <?php
         $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
         $categorylist_query1=mysqli_query($db, $categorylist_sql1);
@@ -57,21 +63,13 @@
   	  <label>
         Username
       </label>
-  	  <input type="text" name="username" value="
-      <?php
-      echo $username;
-      ?>
-      ">
+  	  <input type="text" name="username" value="<?php echo $username; ?>">
   	</div>
   	<div class="input-group">
   	  <label>
         Email
       </label>
-  	  <input type="email" name="email" value="
-      <?php 
-      echo $email; 
-      ?>
-      ">
+  	  <input type="email" name="email" value="<?php echo $email; ?>">
   	</div>
   	<div class="input-group">
   	  <label>

@@ -1,7 +1,12 @@
 <?php
   session_start();
   $username = "";
-  $email    = "";
+  $email = "";
+  $name = "";
+  $telp = "";
+  $gender = "";
+  $alamat = "";
+  $rumah = "";
   $errors = array(); 
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
   if (isset($_POST['reg_user'])) {
@@ -39,7 +44,7 @@
     if (count($errors) == 0) {
     	$_SESSION['username'] = $username;
       $_SESSION['email'] = $email;
-      $_SESSION['password'] = $password;
+      $_SESSION['password'] = $password_1;
       $_SESSION['gender'] = $gender;
       $_SESSION['telp'] = $telp;
       $_SESSION['alamat'] = $alamat;
@@ -51,7 +56,7 @@
   }
   if (isset($_POST['reg2_user'])) {
     $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);
-    if (empty($sekolah)) { array_push($errors, "Password is required"); }
+    if (empty($sekolah)) { array_push($errors, "Sekolah is required"); }
     if (count($errors) == 0) {
       $username = $_SESSION['username'];
       $email = $_SESSION['email'];
@@ -93,8 +98,9 @@
       $results = mysqli_query($db, $query);
       if (mysqli_num_rows($results) == 1) {
         $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
         $_SESSION['success'] = "You are now logged in";
-        header('location: reg2.php');
+        header('location: index.php');
       }else {
         array_push($errors, "Wrong username/password combination");
       }
