@@ -3,6 +3,7 @@
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -69,7 +70,7 @@
                     <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="reg2.php">
                         <?php include('errors.php'); ?>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
                             <input id="user" type="text" class="form-control" placeholder="Sekolah" disabled>
                             <select style="width: 100%;" name="sekolah"">
                             <?php
@@ -91,8 +92,8 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 controls" style="clear: both;">
-                                <button type="submit" href="register.php" class="btn btn-primary" name="reg2_user"><i class="glyphicon glyphicon-log-in"></i> Back</button>
-                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg2_user"><i class="glyphicon glyphicon-log-in"></i> Register</button>
+                                <button type="submit" href="register.php" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg2_user"><i class="glyphicon glyphicon-check"></i> Register</button>
                             </div>
                             <br>
                             <div align="center">

@@ -75,11 +75,11 @@
                             <input id="user" type="text" class="form-control" name="name" value="<?php echo $name; ?>" placeholder="Nama">
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
                             <input id="user" type="text" class="form-control" name="telp" value="<?php echo $telp; ?>" placeholder="Telp">
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-gender"></i></span>
                             <input id="user" type="text" class="form-control" placeholder="Jenis Kelamin" disabled>
                             <select style="width: 100%;" name="gender"">
                             <option selected hidden><?php echo $gender; ?></option>
@@ -88,7 +88,7 @@
                             </select>
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                             <input id="user" type="text" class="form-control" name="alamat" value="<?php echo $alamat; ?>" placeholder="Alamat Rumah">
                         </div>
                         <div class="input-group">
