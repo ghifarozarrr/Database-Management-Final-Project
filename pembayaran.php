@@ -95,10 +95,16 @@
         <h1 class="text-uppercase mb-0" style="font-size: 50px;">Pembayaran</h1><br>
         <div class="w3-row" style="font-size: 1.5em;">
           <a href="javascript:void(0)" onclick="openCity(event, 'London');">
-             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Purse-512.png" style="width: 200px"><p style="color: #fff;">Tabel Pembayaran</p></div>
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 1em;"><img src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Purse-512.png" style="width: 150px"><p style="color: #fff;">Tabel Pembayaran</p></div>
           </a>
           <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
-             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="https://image.flaticon.com/icons/png/512/330/330716.png" style="width: 200px"><p style="color: #fff;">Daftar Tagihan untuk Siswa</p></div>
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 1em;"><img src="https://image.flaticon.com/icons/png/512/330/330716.png" style="width: 150px"><p style="color: #fff;">Daftar Tagihan</p></div>
+          </a>
+           <a href="javascript:void(0)" onclick="openCity(event, 'Mama');">
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 1em;"><img src="https://d277f1jmxe1sls.cloudfront.net/wp-content/uploads/2016/06/discount.png" style="width: 150px"><p style="color: #fff;">Diskon Biaya</p></div>
+          </a>
+           <a href="javascript:void(0)" onclick="openCity(event, 'Papa');">
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 1em;"><img src="https://i.pinimg.com/originals/da/8f/2b/da8f2b7931a062f98daa85cec24d3e36.png" style="width: 150px"><p style="color: #fff;">Kenaikan Biaya</p></div>
           </a>
         </div>
       </div>
