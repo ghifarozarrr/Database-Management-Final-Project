@@ -10,7 +10,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style type="text/css">
         body {
-            background-color: #18bc9c!important;
+            background-color: #e64398!important;
             font-family: Montserrat;
         }
 
@@ -35,9 +35,9 @@
             background-color: transparent;
         }
 
-        .panel-body {
+         .panel-body {
             padding-top: 30px;
-            background-color: rgba(2555,255,255,.3);
+            background-color: #F1EBF7;
         }
 
         #particles {
@@ -63,7 +63,7 @@
             </div>
             <div class="panel panel-default" >
                 <div class="panel-heading">
-                    <div class="panel-title text-center"><strong>Registrasi</strong></div>
+                    <div class="panel-title text-center"><strong>Registrasi Layanan Natar Jemput Sekolah</strong></div>
                 </div>     
 
                 <div class="panel-body" >
@@ -130,12 +130,12 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg_user"><i class="glyphicon glyphicon-log-in"></i> Next</button>                          
+                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-log-in"></i> Next</button>                          
                             </div>
                             <br>
                             <div align="center">
                                 <strong>
-                                <p style="padding-top: 40px;">Already registered? <a style="color: #f5f7d4;" href="login.php">Sign in!</a></p>    
+                                <p style="padding-top: 40px;">Sudah memiliki akun? <a style="color: #FECC45;" href="login.php">Log in!</a></p>    
                                 </strong>                                
                             </div>
                         </div>

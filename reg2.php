@@ -11,7 +11,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style type="text/css">
         body {
-            background-color: #18bc9c!important;
+            background-color: #e64398!important;
             font-family: Montserrat;
         }
 
@@ -38,7 +38,7 @@
 
         .panel-body {
             padding-top: 30px;
-            background-color: rgba(2555,255,255,.3);
+            background-color: #F1EBF7;
         }
 
         #particles {
@@ -93,12 +93,12 @@
                         <div class="form-group">
                             <div class="col-sm-12 controls" style="clear: both;">
                                 <button type="submit" href="register.php" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
-                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg2_user"><i class="glyphicon glyphicon-check"></i> Register</button>
+                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg2_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-check"></i> Register</button>
                             </div>
                             <br>
                             <div align="center">
                                 <strong>
-                                <p style="padding-top: 40px;">Already registered? <a style="color: #f5f7d4;" href="login.php">Sign in!</a></p>    
+                                <p style="padding-top: 40px;">Sudah memiliki akun? <a style="color: #FECC45;" href="login.php">Log in!</a></p>    
                                 </strong>                                
                             </div>
                         </div>

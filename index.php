@@ -12,7 +12,12 @@
   }
 ?>
 
-
+<style type="text/css">
+  hr.star-light:after {
+    color: #fff;
+    background-color: #e64398!important;
+}
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,10 +66,10 @@
   </div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">BERANDA</a>
-        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="" style="background-color: #27064C!important;">
+      <div class="container" style="color: #F65E4A !important;">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" style="color: #F65E4A !important; font-size: 1.5em;"><strong>BERANDA</strong></a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
           Menu
           <i class="fa fa-bars"></i>
         </button>
@@ -76,14 +81,14 @@
                 <?php endif ?>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Administrasi</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" style="color: #FFB85C !important;"><strong>Administrasi</strong></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="tabel.php">Informasi</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="tabel.php" style="color: #FFB85C !important;"><strong>Informasi</strong></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'">logout</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Log out</strong></a>
               <?php endif ?>
             </li>
           </ul>
@@ -92,10 +97,10 @@
     </nav>
 
     <!-- Header -->
-    <header class="masthead bg-primary text-white text-center">
+    <header class="masthead text-white text-center" style="padding-top: 100px; background-color: #e64398">
       <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
-        <h1 class="text-uppercase mb-0">JASA ANTAR JEMPUT SEKOLAH</h1>
+        <img class="img-fluid mb-5 d-block mx-auto" src="https://www.westminsterpublicschools.org/cms/lib/CO01001133/Centricity/Domain/1/youthed-bus-icon.png" alt="" style="width: 270px;">
+        <h1 class="text-uppercase mb-0" style="font-size: 50px;">JASA ANTAR JEMPUT SEKOLAH</h1>
         <hr class="star-light">
         <h2 class="font-weight-light mb-0">Anakmu Anakku Juga</h2>
       </div>
@@ -171,7 +176,7 @@
       </div>
     </section>
     <!-- Footer -->
-    <footer class="footer text-center">
+    <footer class="footer text-center" style="background-color: #27064C!important;">
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-5 mb-lg-0">

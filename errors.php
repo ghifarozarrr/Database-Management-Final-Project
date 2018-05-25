@@ -5,3 +5,10 @@
   	<?php endforeach ?>
   </div>
 <?php  endif ?>
+
+<style type="text/css">
+	.error{
+		color: #C62538;
+		text-align: center;
+	}
+</style>

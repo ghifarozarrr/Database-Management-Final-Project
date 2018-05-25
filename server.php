@@ -19,26 +19,26 @@
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
     $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-    if (empty($name)) { array_push($errors, "Nama is required"); }
-    if (empty($telp)) { array_push($errors, "Telp is required"); }
-    if (empty($gender)) { array_push($errors, "Gender is required"); }
-    if (empty($alamat)) { array_push($errors, "Alamat is required"); }
-    if (empty($rumah)) { array_push($errors, "Rumah is required"); }
-    if (empty($username)) { array_push($errors, "Username is required"); }
-    if (empty($email)) { array_push($errors, "Email is required"); }
-    if (empty($password_1)) { array_push($errors, "Password is required"); }
+    if (empty($name)) { array_push($errors, "Nama harus diisi!"); }
+    if (empty($telp)) { array_push($errors, "Telp harus diisi!"); }
+    if (empty($gender)) { array_push($errors, "Gender harus diisi!"); }
+    if (empty($alamat)) { array_push($errors, "Alamat harus diisi!"); }
+    if (empty($rumah)) { array_push($errors, "Rumah harus diisi!"); }
+    if (empty($username)) { array_push($errors, "Username harus diisi!"); }
+    if (empty($email)) { array_push($errors, "Email harus diisi!"); }
+    if (empty($password_1)) { array_push($errors, "Password harus diisi!"); }
     if ($password_1 != $password_2) {
-  	array_push($errors, "The two passwords do not match");
+  	array_push($errors, "Password tidak cocok");
     }
     $user_check_query = "SELECT * FROM penumpang WHERE p_username='$username' OR p_email='$email' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
     if ($user) {
       if ($user['username'] == $username) {
-        array_push($errors, "Username already exists");
+        array_push($errors, "Username sudah ada!");
       }
       if ($user['email'] == $email) {
-        array_push($errors, "Email already exists");
+        array_push($errors, "Email sudah ada!");
       }
     }
     if (count($errors) == 0) {
@@ -56,7 +56,7 @@
   }
   if (isset($_POST['reg2_user'])) {
     $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);
-    if (empty($sekolah)) { array_push($errors, "Sekolah is required"); }
+    if (empty($sekolah)) { array_push($errors, "Sekolah harus diisi!"); }
     if (count($errors) == 0) {
       $username = $_SESSION['username'];
       $email = $_SESSION['email'];
@@ -87,10 +87,10 @@
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
     if (empty($username)) {
-      array_push($errors, "Username is required");
+      array_push($errors, "Username harus diisi!");
     }
     if (empty($password)) {
-      array_push($errors, "Password is required");
+      array_push($errors, "Password harus diisi!");
     }
     if (count($errors) == 0) {
       $password = md5($password);
@@ -102,7 +102,7 @@
         $_SESSION['success'] = "You are now logged in";
         header('location: index.php');
       }else {
-        array_push($errors, "Wrong username/password combination");
+        array_push($errors, "Username/password salah!");
       }
     }
   }
