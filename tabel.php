@@ -50,7 +50,7 @@ p {
   width: 1200px;
   max-width: 100%;
   overflow: hidden;
-  padding-top: 100px;
+
   margin-bottom: 60px;
 }
 
@@ -204,7 +204,7 @@ p {
 </style>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
   <head>
 
@@ -280,7 +280,14 @@ p {
         </div>
       </div>
     </nav>
-
+<header class="masthead text-white text-center" style="padding-top: 100px; background-color: #e64398">
+      <div class="container">
+        <img class="img-fluid mb-5 d-block mx-auto" src="https://www.westminsterpublicschools.org/cms/lib/CO01001133/Centricity/Domain/1/youthed-bus-icon.png" alt="" style="width: 270px;">
+        <h1 class="text-uppercase mb-0" style="font-size: 50px;">JASA ANTAR JEMPUT SEKOLAH</h1>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0">Anakmu Anakku Juga</h2>
+      </div>
+    </header>
     <section class="tabs">
   <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
   <label for="tab-1" class="tab-label-1">Penumpang</label>

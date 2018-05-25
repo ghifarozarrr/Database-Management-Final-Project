@@ -81,10 +81,10 @@
                 <?php endif ?>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" style="color: #FFB85C !important;"><strong>Administrasi</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.php" style="color: #FFB85C !important;"><strong>Profil</strong></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="tabel.php" style="color: #FFB85C !important;"><strong>Informasi</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" style="color: #FFB85C !important;"><strong>Informasi</strong></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
@@ -97,19 +97,18 @@
     </nav>
 
     <!-- Header -->
-    <header class="masthead text-white text-center" style="padding-top: 100px; background-color: #e64398">
+    <header class="masthead text-white text-center" style="padding-top: 120px; background-color: #e64398; max-height: 100vh;">
       <div class="container">
         <img class="img-fluid mb-5 d-block mx-auto" src="https://www.westminsterpublicschools.org/cms/lib/CO01001133/Centricity/Domain/1/youthed-bus-icon.png" alt="" style="width: 270px;">
         <h1 class="text-uppercase mb-0" style="font-size: 50px;">JASA ANTAR JEMPUT SEKOLAH</h1>
         <hr class="star-light">
-        <h2 class="font-weight-light mb-0">Anakmu Anakku Juga</h2>
       </div>
     </header>
 
     <!-- Portfolio Grid Section -->
     <section class="portfolio" id="portfolio">
       <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Administrasi</h2>
+        <h2 class="text-center text-uppercase text-secondary mb-0">Informasi</h2>
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-6 col-lg-4">

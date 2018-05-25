@@ -1,47 +1,10 @@
-<?php 
-  session_start(); 
-
-  if (!isset($_SESSION['username'])) {
-    $_SESSION['msg'] = "You must log in first";
-    header('location: login.php');
-  }
-  if (isset($_GET['logout'])) {
-    session_destroy();
-    unset($_SESSION['username']);
-    header("location: login.php");
-  }
-?>
-
-
 <?php include('server.php') ?>
 
 <style type="text/css">
 
-  *{
-      text-align:center;
-  }
- /* input[type="button"] {
-  transition: all .3s;
-    border: 1px solid #ddd;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 5px;
-  font-size: 15px;
-
+*{
+	text-align:center;
 }
-
-input[type="button"]:not(.active) {
-  background-color:transparent;
-}
-
-.active {
-  background-color: #ff4d4d;
-  color :#fff;
-}
-
-input[type="button"]:hover:not(.active) {
-  background-color: #ddd;
-}*/
 
 .results tr[visible='false'],
 .no-result{
@@ -56,6 +19,11 @@ input[type="button"]:hover:not(.active) {
   padding:8px; 
   color:#ccc;
 }
+
+
+  hr.star-light:after {
+    color: #fff;
+    background-color: #e64398!important;
 
 </style>
 
@@ -84,29 +52,37 @@ input[type="button"]:hover:not(.active) {
 
     <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
+   <!--  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
   </head>
 
   <body id="page-top">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="index.php">BERANDA</a>
-        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="" style="background-color: #27064C!important;">
+      <div class="container" style="color: #F65E4A !important;">
+        <a class="navbar-brand js-scroll-trigger" href="index.php" style="color: #F65E4A !important; font-size: 1.5em;"><strong>BERANDA</strong></a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
           Menu
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-     <!--        <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#tagihan">View 1</a>
+            <li class="nav-item mx-0 mx-lg-1">
+              <?php  if (isset($_SESSION['username'])) : ?>
+                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">Hi <strong><?php echo $_SESSION['username']; ?>!</strong></a>
+                <?php endif ?>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#daerah">View 2</a>
-            </li> -->
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.php" style="color: #FFB85C !important;"><strong>Profil</strong></a>
+            </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Informasi</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" style="color: #FFB85C !important;"><strong>Informasi</strong></a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <?php  if (isset($_SESSION['username'])) : ?>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Log out</strong></a>
+              <?php endif ?>
             </li>
           </ul>
         </div>
@@ -114,15 +90,69 @@ input[type="button"]:hover:not(.active) {
     </nav>
 
     <!-- Header -->
-    <header class="masthead bg-primary text-white text-center" id="tagihan">
+    <header class="masthead text-white text-center" style="padding-top: 120px; background-color: #e64398; max-height: 100vh;">
       <div class="container">
-        <h1 class="text-uppercase mb-0">VIEW</h1>
-        <hr class="star-light">
-        <h2 class="font-weight-light mb-0">Siswa yang Belum Membayar</h2>
+        <h1 class="text-uppercase mb-0" style="font-size: 50px;">Pembayaran</h1><br>
+        <div class="w3-row" style="font-size: 1.5em;">
+          <a href="javascript:void(0)" onclick="openCity(event, 'London');">
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Purse-512.png" style="width: 200px"><p style="color: #fff;">Tabel Pembayaran</p></div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="https://image.flaticon.com/icons/png/512/330/330716.png" style="width: 200px"><p style="color: #fff;">Daftar Tagihan untuk Siswa</p></div>
+          </a>
+        </div>
       </div>
     </header>
-    <br>
 
+    <div class="w3-container">
+
+  <div id="London" class="w3-container city" style="display:none">
+    <div class="container">
+      <table class="table table-hover table-bordered results">
+         <?php
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          $result = mysqli_query($db,"SELECT * FROM pembayaran");
+          ?>
+        <!-- <div class="form-group pull-right">
+          <input type="text" class="search form-control" placeholder="What you looking for?">
+        </div> -->
+        <span class="counter pull-right"></span>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ID Siswa</th>
+            <th scope="col">Status</th>
+            <th scope="col">Bulan</th>
+            <th scope="col">Biaya</th>
+            <th scope="col">Tanggal Bayar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              while($row = mysqli_fetch_array($result))
+              {
+                echo "<tr>";
+                echo "<td>" . $row['b_id'] . "</td>";
+                echo "<td>" . $row['p_id'] . "</td>";
+                echo "<td>" . $row['b_status'] . "</td>";
+                echo "<td>" . $row['b_bulan'] . "</td>";
+                echo "<td>Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo "</tr>";
+              }
+              // mysqli_close($db);
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
       <table class="table table-hover table-bordered results">
          <?php
@@ -132,9 +162,9 @@ input[type="button"]:hover:not(.active) {
           }
           $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
           ?>
-        <div class="form-group pull-right">
+<!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div>
+        </div> -->
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
@@ -164,6 +194,12 @@ input[type="button"]:hover:not(.active) {
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
+
+
+
     <!-- Footer -->
     <footer class="footer text-center">
       <div class="container">
@@ -255,95 +291,17 @@ input[type="button"]:hover:not(.active) {
       });
 });
 
-// // get the table element
-// var $table = document.getElementById("myTable"),
-// // number of rows per page
-// $n = 10,
-// // number of rows of the table
-// $rowCount = $table.rows.length,
-// // get the first cell's tag name (in the first row)
-// $firstRow = $table.rows[0].firstElementChild.tagName,
-// // boolean var to check if table has a head row
-// $hasHead = ($firstRow === "TH"),
-// // an array to hold each row
-// $tr = [],
-// // loop counters, to start count from rows[1] (2nd row) if the first row has a head tag
-// $i,$ii,$j = ($hasHead)?1:0,
-// // holds the first row if it has a (<TH>) & nothing if (<TD>)
-// $th = ($hasHead?$table.rows[(0)].outerHTML:"");
-// // count the number of pages
-// var $pageCount = Math.ceil($rowCount / $n);
-// // if we had one page only, then we have nothing to do ..
-// if ($pageCount > 1) {
-//   // assign each row outHTML (tag name & innerHTML) to the array
-//   for ($i = $j,$ii = 0; $i < $rowCount; $i++, $ii++)
-//     $tr[$ii] = $table.rows[$i].outerHTML;
-//   // create a div block to hold the buttons
-//   $table.insertAdjacentHTML("afterend","<div id='buttons'></div");
-//   // the first sort, default page is the first one
-//   sort(1);
-// }
-
-// // ($p) is the selected page number. it will be generated when a user clicks a button
-// function sort($p) {
-//   /* create ($rows) a variable to hold the group of rows
-//   ** to be displayed on the selected page,
-//   ** ($s) the start point .. the first row in each page, Do The Math
-//   */
-//   var $rows = $th,$s = (($n * $p)-$n);
-//   for ($i = $s; $i < ($s+$n) && $i < $tr.length; $i++)
-//     $rows += $tr[$i];
-  
-//   // now the table has a processed group of rows ..
-//   $table.innerHTML = $rows;
-//   // create the pagination buttons
-//   document.getElementById("buttons").innerHTML = pageButtons($pageCount,$p);
-//   // CSS Stuff
-//   document.getElementById("id"+$p).setAttribute("class","active");
-// }
-
-
-// // ($pCount) : number of pages,($cur) : current page, the selected one ..
-// function pageButtons($pCount,$cur) {
-//   /* this variables will disable the "Prev" button on 1st page
-//      and "next" button on the last one */
-//   var $prevDis = ($cur == 1)?"disabled":"",
-//     $nextDis = ($cur == $pCount)?"disabled":"",
-//     /* this ($buttons) will hold every single button needed
-//     ** it will creates each button and sets the onclick attribute
-//     ** to the "sort" function with a special ($p) number..
-//     */
-//     $buttons = "<input type='button' value='&lt;&lt; Prev' onclick='sort("+($cur - 1)+")' "+$prevDis+">";
-//   for ($i=1; $i<=$pCount;$i++)
-//     $buttons += "<input type='button' id='id"+$i+"'value='"+$i+"' onclick='sort("+$i+")'>";
-//   $buttons += "<input type='button' value='Next &gt;&gt;' onclick='sort("+($cur + 1)+")' "+$nextDis+">";
-//   return $buttons;
-// }
-
-// $(document).ready(function() {
-//   $(".search").keyup(function () {
-//     var searchTerm = $(".search").val();
-//     var listItem = $('.results tbody').children('tr');
-//     var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-    
-//   $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-//         return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-//     }
-//   });
-    
-//   $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-//     $(this).attr('visible','false');
-//   });
-
-//   $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-//     $(this).attr('visible','true');
-//   });
-
-//   var jobCount = $('.results tbody tr[visible="true"]').length;
-//     $('.counter').text(jobCount + ' item');
-
-//   if(jobCount == '0') {$('.no-result').show();}
-//     else {$('.no-result').hide();}
-//       });
-// });
+  function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-red";
+}
 </script>
