@@ -1,4 +1,3 @@
-<?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,16 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <title>Layanan AJS</title>
+
+    <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
 	<style type="text/css">
+		/* CSS design by @jofpin */
 @import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
 @import url(http://weloveiconfonts.com/api/?family=entypo);
+
 [class*="entypo-"]:before {
   font-family: 'entypo', sans-serif;
 }
@@ -41,6 +51,67 @@ body {
   height: 20em;
   background: #fff;
   border-radius: .3em;
+}
+
+.user-profile  .username {
+  margin: auto;
+  margin-top: -4.40em;
+  margin-left: 5.80em;
+  color: #658585;
+  font-size: 1.53em;
+  font-family: "Coda", sans-serif;
+  font-weight: bold;
+}
+.user-profile  .bio {
+  margin: auto;
+  display: inline-block;
+  margin-left: 10.43em;
+  color: #e76043; 
+  font-size: .87em;
+  font-family: "varela round", sans-serif;
+}
+.user-profile > .description {
+  margin: auto;
+  margin-top: 1.35em;
+  margin-right: 4.43em;
+  width: 14em;
+  color: #c0c5c5; 
+  font-size: .87em;
+  font-family: "varela round", sans-serif;
+}
+.user-profile > img.avatar {
+	padding: .7em;
+  margin-left: .8em;
+  margin-top: .8em;
+  height: 12.23em;
+  width: 12.23em;
+  border-radius: 18em;
+}
+
+.user-profile ul.data {
+	margin: 10em auto;
+	height: 3.70em;
+  background: #e64398;
+  text-align: center;
+  border-radius: 0 0 .3em .3em;
+}
+.user-profile li {
+	margin: 0 auto;
+  padding: 1.30em; 
+  width: 33.33334%;
+  display: table-cell;
+  text-align: center;
+}
+
+.user-profile span {
+	font-family: "varela round", sans-serif;
+	color: #e3eeee;
+  white-space: nowrap;
+  font-size: 1.27em;
+  font-weight: bold;
+}
+.user-profile span:hover {
+  color: #daebea;
 }
 
 footer > h1 {
@@ -79,7 +150,7 @@ footer > h1 a {
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="" style="background-color: #27064C!important;">
       <div class="container" style="color: #F65E4A !important;">
-        <a class="navbar-brand js-scroll-trigger" href="index.php" style="color: #F65E4A !important; font-size: 1.5em;"><strong>BERANDA</strong></a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" style="color: #F65E4A !important; font-size: 1.5em;"><strong>BERANDA</strong></a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
           Menu
           <i class="fa fa-bars"></i>
@@ -92,7 +163,7 @@ footer > h1 a {
                 <?php endif ?>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" style="color: #FFB85C !important;"><strong>Profil</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.php" style="color: #FFB85C !important;"><strong>Profil</strong></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" style="color: #FFB85C !important;"><strong>Informasi</strong></a>
@@ -108,53 +179,20 @@ footer > h1 a {
     </nav>
     <div style="margin-top: 80px;">
       <h1 class="title-pen"> Profil <span>Pengguna</span></h1>
-      <?php
-        $username=$_SESSION['username'];
-        $q1 = "SELECT p_nama, p_gender, p_email, tj_alamat, p_telp, tt_deskripsi, tt_alamat, tt_daerah
-               FROM penumpang JOIN titik_jemput USING (tj_id) 
-               JOIN titik_tujuan USING (tt_id)
-               WHERE p_username='$username'";
-        $q2 =mysqli_query($db, $q1);
-        $q3=mysqli_fetch_assoc($q2);
-      ?>
       <div class="user-profile">
-        <div style="float: left; margin: 47px; margin-bottom: 0px; height: 280px;">
-          <?php if($q3['p_gender'] == 'L') : ?>
-          <img class="avatar" style="border-radius: 50%" src="img/cowo.png" alt="Ash" />
-          <?php else : ?>
-          <img class="avatar" style="border-radius: 50%" src="img/cewe.png" alt="Ash" />
-          <?php endif ?>
+        <img class="avatar" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTF_erFD1SeUnxEpvFjzBCCDxLvf-wlh9ZuPMqi02qGnyyBtPWdE-3KoH3s" alt="Ash" />
+          <div class="username" style="margin-left: 14.23em;">Will Smith</div>
+        <div class="bio">
+          Senior UI Designer
         </div>
-        <div style="padding: 20px;">
-          <div style="font-weight: bold; color: #79bb8c; font-size: 1.93em; font-family: "Coda", sans-serif;"><?php echo $q3['p_nama']; ?></div>
-          <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-mail"> <?php echo $q3['p_email']; ?></span>
-          </div>
-          <div style="color: #ea9b25; font-size: 1em;font-family: "varela round", sans-serif;">
-            <span class="entypo-home"> <?php echo $q3['tj_alamat']; ?></span>
-          </div>
-          <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-phone"> <?php echo $q3['p_telp']; ?></span>
-          </div>
-          <br>
-          <div style="font-weight: bold; color: #79bb8c; font-size: 1.93em; font-family: "Coda", sans-serif;">Rincian :</div>
-          <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-graduation-cap"> <?php echo $q3['tt_deskripsi']; ?></span>
-          </div>
-          <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-address"> <?php echo $q3['tt_alamat'] . ", " . $q3['tt_daerah']; ?></span>
-          </div>
-          <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-user"> Supir</span>
-          </div>
-          <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-key"> Kendaraan</span>
-          </div>
+          <div class="description">
+            I use to design websites and applications
+            for the web.
         </div>
       </div>
       <div align="center">
-        <div align="center" style="background-color: #e64398; height: 60px; width: 800px; border-radius: 0 0 15px 15px; color: white; font-size: 25px; padding-top: 10px;">
-          <span style="font-family: "varela round", sans-serif; color: #e3eeee; white-space: nowrap; font-size: 1.27em; font-weight: bold;" class="entypo-eye"> Tagihan</span>
+        <div align="center" style="background-color: #e64398; height: 60px; width: 800px; border-radius: 0 0 15px 15px; color: white; font-size: 25px;">
+          <span class="entypo-eye"> Tagihan</span>
         </div>
       </div>
     </div>

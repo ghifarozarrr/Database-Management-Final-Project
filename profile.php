@@ -1,4 +1,6 @@
-<?php include('server.php') ?>
+<?php 
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,47 +17,43 @@
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
     <link href="css/freelancer.min.css" rel="stylesheet">
 	<style type="text/css">
-@import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
-@import url(http://weloveiconfonts.com/api/?family=entypo);
-[class*="entypo-"]:before {
-  font-family: 'entypo', sans-serif;
-}
-
-body {
-  background: #fffcdd;
-  padding: 2.23em;
-}
-
-.title-pen {
-  color: #333;
-  font-family: "Coda", sans-serif;
-  text-align: center;
-}
-.title-pen span {
-  color: #F65E4A;
-}
-
-.user-profile {
-  margin: auto;
-	width: 50em; 
-  height: 20em;
-  background: #fff;
-  border-radius: .3em;
-}
-
-footer > h1 {
-  display: block;
-  text-align: center;
-  clear: both;
-  font-family: "Coda", sans-serif;
-  color: #343f3d;
-  line-height: 6;
-  font-size: 1.6em;
-}
-footer > h1 a {
-  text-decoration: none;
-  color: #ea4c89;
-}
+    @import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
+    @import url(http://weloveiconfonts.com/api/?family=entypo);
+    [class*="entypo-"]:before {
+      font-family: 'entypo', sans-serif;
+    }
+    body {
+      background: #fffcdd;
+      padding: 2.23em;
+    }
+    .title-pen {
+      color: #333;
+      font-family: "Coda", sans-serif;
+      text-align: center;
+    }
+    .title-pen span {
+      color: #F65E4A;
+    }
+    .user-profile {
+      margin: auto;
+    	width: 50em; 
+      height: 20em;
+      background: #fff;
+      border-radius: .3em;
+    }
+    footer > h1 {
+      display: block;
+      text-align: center;
+      clear: both;
+      font-family: "Coda", sans-serif;
+      color: #343f3d;
+      line-height: 6;
+      font-size: 1.6em;
+    }
+    footer > h1 a {
+      text-decoration: none;
+      color: #ea4c89;
+    }
 	</style>
 </head>
 <body id="page-top">
@@ -108,41 +106,28 @@ footer > h1 a {
     </nav>
     <div style="margin-top: 80px;">
       <h1 class="title-pen"> Profil <span>Pengguna</span></h1>
-      <?php
-        $username=$_SESSION['username'];
-        $q1 = "SELECT p_nama, p_gender, p_email, tj_alamat, p_telp, tt_deskripsi, tt_alamat, tt_daerah
-               FROM penumpang JOIN titik_jemput USING (tj_id) 
-               JOIN titik_tujuan USING (tt_id)
-               WHERE p_username='$username'";
-        $q2 =mysqli_query($db, $q1);
-        $q3=mysqli_fetch_assoc($q2);
-      ?>
       <div class="user-profile">
-        <div style="float: left; margin: 47px; margin-bottom: 0px; height: 280px;">
-          <?php if($q3['p_gender'] == 'L') : ?>
-          <img class="avatar" style="border-radius: 50%" src="img/cowo.png" alt="Ash" />
-          <?php else : ?>
-          <img class="avatar" style="border-radius: 50%" src="img/cewe.png" alt="Ash" />
-          <?php endif ?>
+        <div style="float: left; margin: 20px; height: 280px;">
+          <img class="avatar" style="border-radius: 50%" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTF_erFD1SeUnxEpvFjzBCCDxLvf-wlh9ZuPMqi02qGnyyBtPWdE-3KoH3s" alt="Ash" />
         </div>
         <div style="padding: 20px;">
-          <div style="font-weight: bold; color: #79bb8c; font-size: 1.93em; font-family: "Coda", sans-serif;"><?php echo $q3['p_nama']; ?></div>
+          <div style="font-weight: bold; color: #79bb8c; font-size: 1.93em; font-family: "Coda", sans-serif;">Nama</div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-mail"> <?php echo $q3['p_email']; ?></span>
+            <span class="entypo-mail"> Email</span>
           </div>
           <div style="color: #ea9b25; font-size: 1em;font-family: "varela round", sans-serif;">
-            <span class="entypo-home"> <?php echo $q3['tj_alamat']; ?></span>
+            <span class="entypo-home"> Alamat</span>
           </div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-phone"> <?php echo $q3['p_telp']; ?></span>
+            <span class="entypo-phone"> Telepon</span>
           </div>
           <br>
           <div style="font-weight: bold; color: #79bb8c; font-size: 1.93em; font-family: "Coda", sans-serif;">Rincian :</div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-graduation-cap"> <?php echo $q3['tt_deskripsi']; ?></span>
+            <span class="entypo-graduation-cap"> Sekolah</span>
           </div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-address"> <?php echo $q3['tt_alamat'] . ", " . $q3['tt_daerah']; ?></span>
+            <span class="entypo-address"> Daerah</span>
           </div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
             <span class="entypo-user"> Supir</span>
