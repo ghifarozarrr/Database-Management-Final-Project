@@ -34,10 +34,12 @@
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
     if ($user) {
-      if ($user['username'] == $username) {
+      if ($user['p_username'] == $username) {
+        $username="";
         array_push($errors, "Username sudah ada!");
       }
-      if ($user['email'] == $email) {
+      if ($user['p_email'] == $email) {
+        $email="";
         array_push($errors, "Email sudah ada!");
       }
     }
@@ -53,6 +55,9 @@
       $_SESSION['success'] = "You are now logged in";
       header('location: reg2.php');
     }
+  }
+  if (isset($_POST['backReg'])) {
+    header('location: register.php');
   }
   if (isset($_POST['reg2_user'])) {
     $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);

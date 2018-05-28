@@ -1,26 +1,24 @@
-<?php include('server.php') ?>
+<?php include('auth.php') ?>
 
 <style type="text/css">
 
-*{
-	text-align:center;
-}
+  *{
+  	text-align:center;
+  }
 
-.results tr[visible='false'],
-.no-result{
-  display:none;
-}
+  .results tr[visible='false'],
+  .no-result{
+    display:none;
+  }
 
-.results tr[visible='true']{
-  display:table-row;
-}
+  .results tr[visible='true']{
+    display:table-row;
+  }
 
-.counter{
-  padding:8px; 
-  color:#ccc;
-}
-
-
+  .counter{
+    padding:8px; 
+    color:#ccc;
+  }
   hr.star-light:after {
     color: #fff;
     background-color: #e64398!important;
