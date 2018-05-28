@@ -1,4 +1,4 @@
-<?php include('auth.php') ?>
+<?php include('server.php') ?>
 
 <style type="text/css">
 
@@ -186,20 +186,21 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM pembayaran");
+          $result = mysqli_query($db,"SELECT p_id, p_nama, p_gender, tj_daerah, p_telp, tt_deskripsi
+       FROM penumpang JOIN titik_jemput USING (tj_id) 
+       JOIN titik_tujuan USING (tt_id)
+       ORDER BY p_id");
           ?>
-        <!-- <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div> -->
+
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">ID Siswa</th>
-            <th scope="col">Status</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Biaya</th>
-            <th scope="col">Tanggal Bayar</th>
+            <th scope="col">Nama Siswa</th>
+            <th scope="col">Telp</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Daerah</th>
+            <th scope="col">Sekolah</th>
           </tr>
         </thead>
         <tbody>
@@ -208,12 +209,12 @@
               while($row = mysqli_fetch_array($result))
               {
                 echo "<tr>";
-                echo "<td>" . $row['b_id'] . "</td>";
                 echo "<td>" . $row['p_id'] . "</td>";
-                echo "<td>" . $row['b_status'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td>Rp " . $row['b_biaya'] . "</td>";
-                echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo "<td>" . $row['p_nama'] . "</td>";
+                echo "<td>" . $row['p_telp'] . "</td>";
+                echo "<td>" . $row['p_gender'] . "</td>";
+                echo "<td>Rp " . $row['tj_daerah'] . "</td>";
+                echo "<td>" . $row['tt_deskripsi'] . "</td>";
                 echo "</tr>";
               }
               // mysqli_close($db);
