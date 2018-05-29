@@ -116,6 +116,12 @@ footer > h1 a {
                WHERE p_username='$username'";
         $q2 =mysqli_query($db, $q1);
         $q3=mysqli_fetch_assoc($q2);
+
+        $k1 = "SELECT *
+               FROM penumpang JOIN detil_perjalanan USING (p_id) JOIN perjalanan USING (pj_id) JOIN supir USING (s_id) JOIN Kendaraan USING (k_id)
+               WHERE p_username='$username'";
+        $k2 =mysqli_query($db, $k1);
+        $k3=mysqli_fetch_assoc($k2);
       ?>
       <div class="user-profile">
         <div style="float: left; margin: 47px; margin-bottom: 0px; height: 280px;">
@@ -145,10 +151,10 @@ footer > h1 a {
             <span class="entypo-address"> <?php echo $q3['tt_alamat'] . ", " . $q3['tt_daerah']; ?></span>
           </div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-user"> Supir</span>
+            <span class="entypo-user"> <?php echo $k3['s_nama']; ?></span>
           </div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-key"> Kendaraan</span>
+            <span class="entypo-key"> <?php echo $k3['k_nama'] . " " . $k3['k_warna'] . " " . $k3['k_pelat']; ?></span>
           </div>
         </div>
       </div>
