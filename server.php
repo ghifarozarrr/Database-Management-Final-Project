@@ -56,7 +56,7 @@
       header('location: reg2.php');
     }
   }
-  if (isset($_POST['backReg'])) {
+  if (isset($_POST['backReg'])){
     header('location: register.php');
   }
   if (isset($_POST['reg2_user'])) {

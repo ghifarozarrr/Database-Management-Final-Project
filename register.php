@@ -54,7 +54,15 @@
 </head>
 <body>
     <div class="container">    
-            
+        <?php
+          $username = $_SESSION['username'];
+          $email = $_SESSION['email'];
+          $gender = $_SESSION['gender'];
+          $telp = $_SESSION['telp'];
+          $alamat = $_SESSION['alamat'];
+          $name = $_SESSION['name'];
+          $rumah = $_SESSION['rumah'];
+        ?>
         <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
             
             <div class="row" align="center">
