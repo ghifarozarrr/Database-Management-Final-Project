@@ -33,7 +33,7 @@
     $user_check_query = "SELECT * FROM penumpang WHERE p_username='$username' OR p_email='$email' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
-    if ($user) {
+    if ($user && (!empty($username) || !empty($email))) {
       if ($user['p_username'] == $username) {
         $username="";
         array_push($errors, "Username sudah ada!");
