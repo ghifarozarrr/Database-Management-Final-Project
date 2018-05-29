@@ -213,7 +213,7 @@
                 echo "<td>" . $row['p_nama'] . "</td>";
                 echo "<td>" . $row['p_telp'] . "</td>";
                 echo "<td>" . $row['p_gender'] . "</td>";
-                echo "<td>Rp " . $row['tj_daerah'] . "</td>";
+                echo "<td>" . $row['tj_daerah'] . "</td>";
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
                 echo "</tr>";
               }
