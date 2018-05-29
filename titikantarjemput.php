@@ -98,7 +98,7 @@
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://image.flaticon.com/icons/svg/170/170427.svg" style="width: 150px"><p style="color: #fff;">Tabel Titik Tujuan</p></div>
           </a>
           <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
-             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://cdn.pixabay.com/photo/2016/10/08/18/35/the-location-of-the-1724293_1280.png" style="width: 150px"><p style="color: #fff;">Tabel Titik Jemput</p></div>
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://image.flaticon.com/icons/png/512/439/439902.png" style="width: 150px"><p style="color: #fff;">Tabel Titik Jemput</p></div>
           </a>
           <a href="javascript:void(0)" onclick="openCity(event, 'Mama');">
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://i.pinimg.com/originals/da/8f/2b/da8f2b7931a062f98daa85cec24d3e36.png" style="width: 150px"><p style="color: #fff;">Daerah Terbanyak</p></div>
@@ -278,6 +278,149 @@
   </div>
 </div>
 
+<div id="Mama" class="w3-container city" style="display:none">
+    <div class="container">
+      <table class="table table-hover table-bordered results">
+         <?php
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          $result = mysqli_query($db,"SELECT * FROM tjsering");
+          ?>
+<!--         <div class="form-group pull-right">
+          <input type="text" class="search form-control" placeholder="What you looking for?">
+        </div> -->
+        <span class="counter pull-right"></span>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama Daerah</th>
+            <th scope="col">Jumlah Penumpang</th>
+            <!-- <th scope="col">Tagihan Biaya</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              $i = 1;
+              while($row = mysqli_fetch_array($result))
+              {
+                echo "<tr>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['tj_daerah'] . "</td>";
+                echo "<td>" . $row['jumlah'] . "</td>";
+                // echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "</tr>";
+                $i++;
+              }
+              // mysqli_close($db);
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="Lala" class="w3-container city" style="display:none">
+    <div class="container">
+      <br>
+        <div class="row mb-4">
+          <div class="col text-center">
+            <a href="#" class="btn btn-lg btn-success">Hapus Titik Tujuan</a>
+          </div>
+        </div>
+      <table class="table table-hover table-bordered results">
+         <?php
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          $result = mysqli_query($db,"SELECT tt.`tt_id`, tt.tt_deskripsi
+FROM PENUMPANG p RIGHT JOIN titik_tujuan tt ON p.tt_id = tt.`tt_id`
+WHERE p.`p_id`IS NULL;");
+          ?>
+<!--         <div class="form-group pull-right">
+          <input type="text" class="search form-control" placeholder="What you looking for?">
+        </div> -->
+        <span class="counter pull-right"></span>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">ID Titik Tujuan</th>
+            <th scope="col">Nama Sekolah</th>
+            <!-- <th scope="col">Tagihan Biaya</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              $i = 1;
+              while($row = mysqli_fetch_array($result))
+              {
+                echo "<tr>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['tt_id'] . "</td>";
+                echo "<td>" . $row['tt_deskripsi'] . "</td>";
+                // echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "</tr>";
+                $i++;
+              }
+              // mysqli_close($db);
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+ <div id="Paris" class="w3-container city" style="display:none">
+    <div class="container">
+      <table class="table table-hover table-bordered results">
+         <?php
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
+          ?>
+<!--         <div class="form-group pull-right">
+          <input type="text" class="search form-control" placeholder="What you looking for?">
+        </div> -->
+        <span class="counter pull-right"></span>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama Siswa</th>
+            <th scope="col">Bulan</th>
+            <th scope="col">Tagihan Biaya</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              $i = 1;
+              while($row = mysqli_fetch_array($result))
+              {
+                echo "<tr>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['p_nama'] . "</td>";
+                echo "<td>" . $row['b_bulan'] . "</td>";
+                echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "</tr>";
+                $i++;
+              }
+              // mysqli_close($db);
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer text-center">

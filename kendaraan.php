@@ -95,7 +95,7 @@
         <h1 class="text-uppercase mb-0" style="font-size: 50px;">Kendaraan</h1><br>
         <div class="w3-row" style="font-size: 1.5em;">
           <a href="javascript:void(0)" onclick="openCity(event, 'London');">
-             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="https://www.iconspng.com/uploads/bus-icon/bus-icon.png" style="width: 200px"><p style="color: #fff;">Tabel Kendaraan</p></div>
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="http://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Bus-icon.png" style="width: 200px"><p style="color: #fff;">Tabel Kendaraan</p></div>
           </a>
           <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="http://institutolidercoaching.com.br/wp-content/uploads/2016/07/bootwise-icon-02.png" style="width: 200px"><p style="color: #fff;">Kapasitas Kendaraan</p></div>
@@ -154,13 +154,21 @@
 
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
+      <br>
+        <div class="row mb-4">
+          <div class="col text-center">
+            <a href="#" class="btn btn-lg btn-success">Update Kapasitas Kendaraan</a>
+          </div>
+        </div>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
+          $result = mysqli_query($db,"SELECT k.k_id, k.k_kapasitas, COUNT(p.p_id) AS jumlah_penumpang
+FROM kendaraan k JOIN supir s ON k.k_id=s.k_id JOIN perjalanan pj ON s.s_id=pj.s_id JOIN detil_perjalanan dp ON pj.pj_id=dp.pj_id JOIN penumpang p ON p.p_id=dp.p_id
+GROUP BY s.s_id");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -169,9 +177,9 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama Siswa</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Tagihan Biaya</th>
+            <th scope="col">ID Kendaraan</th>
+            <th scope="col">Kapasitas</th>
+            <th scope="col">Jumlah Penumpang</th>
           </tr>
         </thead>
         <tbody>
@@ -182,9 +190,9 @@
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['k_id'] . "</td>";
+                echo "<td>" . $row['k_kapasitas'] . "</td>";
+                echo "<td>" . $row['jumlah_penumpang'] . "</td>";
                 echo "</tr>";
                 $i++;
               }
