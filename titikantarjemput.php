@@ -144,45 +144,6 @@
         </div>
       </div>
 
-      <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Update Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            <div class="modal-body">
-              <h3>Modal Body</h3>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Delete Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            <div class="modal-body">
-              <h3>Modal Body</h3>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
@@ -232,6 +193,7 @@
       </table>
     </div>
   </div>
+</div>
 
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
@@ -385,9 +347,37 @@ WHERE p.`p_id`IS NULL;");
   </div>
 </div>
 
-
- <div id="Paris" class="w3-container city" style="display:none">
+ <div id="Papa" class="w3-container city" style="display:none">
     <div class="container">
+      <br><br>
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <input id="user" type="text" placeholder="Daerah" disabled>
+          <select  name="rumah"">
+          <option selected hidden><?php echo $rumah; ?></option>
+          <?php
+            $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
+            $categorylist_query1=mysqli_query($db, $categorylist_sql1);
+            $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
+            do{ 
+          ?>
+          <option>
+          <?php
+            echo $categorylist_rs1['tt_daerah'];
+          ?>
+          </option>
+            <?php
+          } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
+          ?>
+          </select>
+        </div>
+        <br>
+        <div class="form-group">
+          <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
+            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Cari Banyak Sekolah</button>      
+          </div>
+        </div>
+      </form>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())

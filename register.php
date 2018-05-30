@@ -77,7 +77,7 @@
                             <input id="user" type="text" class="form-control" name="telp" value="<?php echo $telp; ?>" placeholder="Telp">
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-gender"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-option-vertical"></i></span>
                             <input id="user" type="text" class="form-control" placeholder="Jenis Kelamin" disabled>
                             <select style="width: 100%;" name="gender"">
                             <option selected hidden><?php echo $gender; ?></option>
@@ -90,7 +90,7 @@
                             <input id="user" type="text" class="form-control" name="alamat" value="<?php echo $alamat; ?>" placeholder="Alamat Rumah">
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
                             <input id="user" type="text" class="form-control" placeholder="Daerah" disabled>
                             <select style="width: 100%;" name="rumah"">
                             <option selected hidden><?php echo $rumah; ?></option>

@@ -208,6 +208,7 @@
           <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
             <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Hitung Rata-Rata Perjalanan</button>      
           </div>
+        </div>
       </form>
 
       <table class="table table-hover table-bordered results">
