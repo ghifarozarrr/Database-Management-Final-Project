@@ -10,6 +10,14 @@
   $rumah = "";
   $errors = array();
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
+  if (isset($_POST['procedure_nuzha'])){
+    if (mysqli_connect_errno())
+    {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $result = mysqli_query($db,"CALL hapus_tujuan()");
+    header('location.reload()');
+  }
   if (isset($_POST['reg_user'])) {
     $name = mysqli_real_escape_string($db, $_POST['name']);
     $telp = mysqli_real_escape_string($db, $_POST['telp']);

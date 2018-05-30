@@ -296,7 +296,10 @@
       <br>
         <div class="row mb-4">
           <div class="col text-center">
-            <button href="#" class="btn btn-lg btn-success">Hapus Titik Tujuan</button>
+            <form method="POST" action="titikantarjemput.php">
+              <input type="submit" class="btn btn-lg btn-success" name="procedure_nuzha" value="Hapus Titik Tujuan"></a>
+            </form>
+            
           </div>
         </div>
       <table class="table table-hover table-bordered results">
