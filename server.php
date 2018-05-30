@@ -20,6 +20,14 @@
     $result = mysqli_query($db,"CALL hapus_tujuan()");
     header('location.reload()');
   }
+  if (isset($_POST['procedure_gisa'])){
+    if (mysqli_connect_errno())
+    {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $result = mysqli_query($db,"CALL tambahkapasitas()");
+    header('location.reload()');
+  }
   if (isset($_POST['index_gisa'])){
     $flag_idx_1="1";
     $_SESSION['flag_idx_1']=$flag_idx_1;

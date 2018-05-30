@@ -157,7 +157,9 @@
       <br>
         <div class="row mb-4">
           <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success">Update Kapasitas Kendaraan</a>
+            <form method="POST" action="kendaraan.php">
+              <input type="submit" class="btn btn-lg btn-success" name="procedure_gisa" value="Update Kapasitas Kendaraan"></a>
+            </form>
           </div>
         </div>
       <table class="table table-hover table-bordered results">
