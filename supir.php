@@ -160,52 +160,15 @@
 
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
-            <br><br>
-      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="GET">
-        <div class="input-group" style="display: flex; justify-content: center;">
-          <input id="user" type="text" placeholder="Nama Supir" disabled>
-          <select  name="rumah"">
-          <option selected hidden><?php echo $rumah; ?></option>
-          <?php
-            $categorylist_sql1="SELECT DISTINCT s_nama FROM supir";
-            $categorylist_query1=mysqli_query($db, $categorylist_sql1);
-            $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
-            do{ 
-          ?>
-          <option>
-          <?php
-            echo $categorylist_rs1['s_nama'];
-          ?>
-          </option>
-            <?php
-          } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
-          ?>
-          </select>
-        </div>
-        <br>
-        <div class="input-group" style="display: flex; justify-content: center;">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="user" type="number" name="name" placeholder="Bulan">
-        </div>
-        <br>
-        <br>
-        <div class="form-group">
-          <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-            <!-- <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Hitung Pengeluaran Bensin</button>     -->
-            <input type="submit" value="Submit" />  
-          </div>
-        </div>
-      </form>
-
-      
-
+      <br>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
+          $result = mysqli_query($db,"SELECT s_nama, bensin1(s_id) AS bengsin, MONTH(perjalanan.`pj_tanggal`) AS bulan
+                                      FROM supir JOIN perjalanan USING (s_id) ORDER BY bulan");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -214,9 +177,9 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama Siswa</th>
+            <th scope="col">Nama Supir</th>
             <th scope="col">Bulan</th>
-            <th scope="col">Tagihan Biaya</th>
+            <th scope="col">Biaya Bensin</th>
           </tr>
         </thead>
         <tbody>
@@ -227,9 +190,9 @@
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['s_nama'] . "</td>";
+                echo "<td>" . $row['bulan'] . "</td>";
+                echo "<td>Rp " . $row['bengsin'] . "</td>";
                 echo "</tr>";
                 $i++;
               }

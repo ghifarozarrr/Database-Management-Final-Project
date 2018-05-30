@@ -166,7 +166,7 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM belumlunas");
+          $result = mysqli_query($db,"SELECT * FROM belum_lunas");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
