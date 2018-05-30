@@ -103,7 +103,7 @@
            <a href="javascript:void(0)" onclick="openCity(event, 'Mama');">
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 1em;"><img src="https://d277f1jmxe1sls.cloudfront.net/wp-content/uploads/2016/06/discount.png" style="width: 150px"><p style="color: #fff;">Diskon Biaya</p></div>
           </a>
-           <a href="javascript:void(0)" onclick="openCity(event, 'Papa');">
+           <a href="javascript:void(0)" onclick="openCity(event, 'Lala');">
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 1em;"><img src="https://i.pinimg.com/originals/da/8f/2b/da8f2b7931a062f98daa85cec24d3e36.png" style="width: 150px"><p style="color: #fff;">Kenaikan Biaya</p></div>
           </a>
         </div>
@@ -203,6 +203,133 @@
   </div>
 </div>
 
+<div id="Mama" class="w3-container city" style="display:none">
+    <div class="container">
+      <br><br>
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Potongan Harga">
+        </div>
+        <br>
+
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Jumlah Perjalanan">
+        </div>
+        <br><br>
+        <div class="form-group">
+          <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
+            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Beri Potongan Harga</button>      
+          </div>
+      </form>
+      <table class="table table-hover table-bordered results">
+         <?php
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          $result = mysqli_query($db,"SELECT * FROM pembayaran");
+          ?>
+        <!-- <div class="form-group pull-right">
+          <input type="text" class="search form-control" placeholder="What you looking for?">
+        </div> -->
+        <span class="counter pull-right"></span>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ID Siswa</th>
+            <th scope="col">Status</th>
+            <th scope="col">Bulan</th>
+            <th scope="col">Biaya</th>
+            <th scope="col">Tanggal Bayar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              while($row = mysqli_fetch_array($result))
+              {
+                echo "<tr>";
+                echo "<td>" . $row['b_id'] . "</td>";
+                echo "<td>" . $row['p_id'] . "</td>";
+                echo "<td>" . $row['b_status'] . "</td>";
+                echo "<td>" . $row['b_bulan'] . "</td>";
+                echo "<td>Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo "</tr>";
+              }
+              // mysqli_close($db);
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<div id="Lala" class="w3-container city" style="display:none">
+    <div class="container">
+      <br><br>
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Tambahan Harga">
+        </div>
+        <br>
+
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Jumlah Penumpang">
+        </div>
+        <br><br>
+        <div class="form-group">
+          <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
+            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Tambah Tarif</button>      
+          </div>
+      </form>
+      <table class="table table-hover table-bordered results">
+         <?php
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          $result = mysqli_query($db,"SELECT * FROM pembayaran");
+          ?>
+        <!-- <div class="form-group pull-right">
+          <input type="text" class="search form-control" placeholder="What you looking for?">
+        </div> -->
+        <span class="counter pull-right"></span>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ID Siswa</th>
+            <th scope="col">Status</th>
+            <th scope="col">Bulan</th>
+            <th scope="col">Biaya</th>
+            <th scope="col">Tanggal Bayar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              while($row = mysqli_fetch_array($result))
+              {
+                echo "<tr>";
+                echo "<td>" . $row['b_id'] . "</td>";
+                echo "<td>" . $row['p_id'] . "</td>";
+                echo "<td>" . $row['b_status'] . "</td>";
+                echo "<td>" . $row['b_bulan'] . "</td>";
+                echo "<td>Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo "</tr>";
+              }
+              // mysqli_close($db);
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
     <!-- Footer -->
     <footer class="footer text-center">

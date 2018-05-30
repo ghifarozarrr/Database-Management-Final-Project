@@ -95,7 +95,7 @@
         <h1 class="text-uppercase mb-0" style="font-size: 50px;">Perjalanan</h1><br>
         <div class="w3-row" style="font-size: 1.5em;">
           <a href="javascript:void(0)" onclick="openCity(event, 'London');">
-             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="http://chittagongit.com//images/get-directions-icon/get-directions-icon-20.jpg" style="width: 200px"><p style="color: #fff;">Tabel Perjalanan</p></div>
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="http://icons.iconarchive.com/icons/alienvalley/osx-dock-replacement/512/maps-icon.png" style="width: 200px"><p style="color: #fff;">Tabel Perjalanan</p></div>
           </a>
           <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 2em;"><img src="http://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Money-Increase-icon.png" style="width: 200px"><p style="color: #fff;">Rata-rata Biaya Perjalanan</p></div>
@@ -108,6 +108,15 @@
 
   <div id="London" class="w3-container city" style="display:none">
     <div class="container">
+      <br>
+        <div class="row mb-4">
+          <div class="col text-center">
+            <a href="#" class="btn btn-lg btn-success">Buat Index</a>
+          </div>
+          <div class="col text-center">
+            <a href="#" class="btn btn-lg btn-success">Drop Index</a>
+          </div>
+        </div>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
@@ -150,6 +159,57 @@
 
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
+      <br><br>
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <input id="user" type="text" placeholder="Daerah Titik Jemput" disabled>
+          <select  name="rumah"">
+          <option selected hidden><?php echo $rumah; ?></option>
+          <?php
+            $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
+            $categorylist_query1=mysqli_query($db, $categorylist_sql1);
+            $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
+            do{ 
+          ?>
+          <option>
+          <?php
+            echo $categorylist_rs1['tt_daerah'];
+          ?>
+          </option>
+            <?php
+          } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
+          ?>
+          </select>
+        </div>
+        <br>
+
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <input id="user" type="text" placeholder="Daerah Titik Tujuan" disabled>
+          <select  name="rumah"">
+          <option selected hidden><?php echo $rumah; ?></option>
+          <?php
+            $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
+            $categorylist_query1=mysqli_query($db, $categorylist_sql1);
+            $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
+            do{ 
+          ?>
+          <option>
+          <?php
+            echo $categorylist_rs1['tt_daerah'];
+          ?>
+          </option>
+            <?php
+          } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
+          ?>
+          </select>
+        </div>
+        <br><br>
+        <div class="form-group">
+          <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
+            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Hitung Rata-Rata Perjalanan</button>      
+          </div>
+      </form>
+
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())

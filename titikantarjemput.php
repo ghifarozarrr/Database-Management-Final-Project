@@ -122,12 +122,6 @@
           <div class="col text-center">
             <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#insert">Insert</a>
           </div>
-          <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#update">Update</a>
-          </div>
-          <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#delete">Delete</a>
-          </div>
         </div>
 
         <div class="modal fade" id="insert" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -209,6 +203,8 @@
             <th scope="col">Bulan</th>
             <th scope="col">Biaya</th>
             <th scope="col">Tanggal Bayar</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -216,6 +212,8 @@
             <?php
               while($row = mysqli_fetch_array($result))
               {
+                $idd=$row['p_id'];
+                
                 echo "<tr>";
                 echo "<td>" . $row['b_id'] . "</td>";
                 echo "<td>" . $row['p_id'] . "</td>";
@@ -223,6 +221,8 @@
                 echo "<td>" . $row['b_bulan'] . "</td>";
                 echo "<td>Rp " . $row['b_biaya'] . "</td>";
                 echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo"<td><button class='btn btn-success' data-id='$idd'>Update</button></td>";
+                echo"<td><button class='btn btn-danger' data-id='$idd'>Delete</button></td>";
                 echo "</tr>";
               }
               // mysqli_close($db);
@@ -235,6 +235,15 @@
 
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
+      <br>
+        <div class="row mb-4">
+          <div class="col text-center">
+            <a href="#" class="btn btn-lg btn-success">Buat Index</a>
+          </div>
+          <div class="col text-center">
+            <a href="#" class="btn btn-lg btn-success">Drop Index</a>
+          </div>
+        </div>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
