@@ -191,7 +191,7 @@
       <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="GET">
         <div class="input-group" style="display: flex; justify-content: center;">
           <input id="user" type="text" placeholder="Daftar Sekolah" disabled>
-          <select name="sekolah"">
+          <select name="sekolah">
           <option selected hidden></option>
           <?php
             $categorylist_sql1="SELECT DISTINCT tt_deskripsi FROM titik_tujuan";
@@ -214,6 +214,7 @@
           <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
             <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i>Lihat Daftar Siswa</button>
           </div>
+        </div>
       </form>
 
       <table class="table table-hover table-bordered results">
@@ -223,7 +224,7 @@
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
           $sekolah = mysqli_real_escape_string($db, $_GET['sekolah']);
-          
+
           $result = mysqli_query($db,"SELECT p.p_nama FROM penumpang p JOIN titik_tujuan tt ON tt.tt_id = p.tt_id WHERE tt.tt_deskripsi = '$sekolah'");
           ?>
 
