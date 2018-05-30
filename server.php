@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $flag="";
   $username = "";
   $email = "";
   $name = "";
@@ -95,10 +96,12 @@
       array_push($errors, "Password harus diisi!");
     }
     if (count($errors) == 0) {
+      $flag="1";
       $password = md5($password);
       $query = "SELECT * FROM penumpang WHERE p_username='$username' AND p_password='$password'";
       $results = mysqli_query($db, $query);
       if (mysqli_num_rows($results) == 1) {
+        $_SESSION['flag']=$flag;
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
         $_SESSION['success'] = "You are now logged in";

@@ -61,7 +61,7 @@
             </div>
             <div class="panel panel-default" >
                 <div class="panel-heading">
-                    <div class="panel-title text-center"><strong>Registrasi Layanan Natar Jemput Sekolah</strong></div>
+                    <div class="panel-title text-center"><strong>Registrasi Layanan Antar Jemput Sekolah</strong></div>
                 </div>     
 
                 <div class="panel-body" >

@@ -1,7 +1,4 @@
 <?php include('server.php');
-if(!isset($_GET[reg_user])){
-    header('location: register.php');
-}
 ?>
 <!DOCTYPE html>
 <html>
