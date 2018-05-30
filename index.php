@@ -89,7 +89,7 @@
     <!-- Header -->
     <header class="masthead text-white text-center" style="padding-top: 80px; background-color: #e64398; max-height: 100vh;">
       <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="https://www.westminsterpublicschools.org/cms/lib/CO01001133/Centricity/Domain/1/youthed-bus-icon.png" alt="" style="width: 270px;">
+        <img class="img-fluid mb-5 d-block mx-auto" src="https://www.svgrepo.com/show/40012/school-bus.svg" alt="" style="width: 270px;">
         <h1 class="text-uppercase mb-0" style="font-size: 50px;">JASA ANTAR JEMPUT SEKOLAH</h1>
         <hr class="star-light">
       </div>
