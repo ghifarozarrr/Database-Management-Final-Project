@@ -77,7 +77,7 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.php" style="color: #FFB85C !important;"><strong>Profil</strong></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" style="color: #FFB85C !important;"><strong>Informasi</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php" style="color: #FFB85C !important;"><strong>Informasi</strong></a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
@@ -104,7 +104,7 @@
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://i.pinimg.com/originals/da/8f/2b/da8f2b7931a062f98daa85cec24d3e36.png" style="width: 150px"><p style="color: #fff;">Daerah Terbanyak</p></div>
           </a>
           <a href="javascript:void(0)" onclick="openCity(event, 'Papa');">
-             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://image.flaticon.com/icons/svg/262/262825.svg" style="width: 150px"><p style="color: #fff;">Daftar Sekolah</p></div>
+             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://image.flaticon.com/icons/svg/262/262825.svg" style="width: 150px"><p style="color: #fff;">Jumlah Sekolah</p></div>
           </a>
             <a href="javascript:void(0)" onclick="openCity(event, 'Lala');">
              <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"  style="display: inline-block;padding: 0.5em;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Circle-icons-denied.svg/2000px-Circle-icons-denied.svg.png" style="width: 150px"><p style="color: #fff;">0 Penumpang</p></div>
