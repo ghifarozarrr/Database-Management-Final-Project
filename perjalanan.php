@@ -111,10 +111,14 @@
       <br>
         <div class="row mb-4">
           <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success">Buat Index</a>
+            <form method="POST" action="perjalanan.php">
+              <input type="submit" class="btn btn-lg btn-success" name="index_nuzha" value="Buat Index"></a>
+            </form>
           </div>
           <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success">Drop Index</a>
+            <form method="POST" action="perjalanan.php">
+              <input type="submit" class="btn btn-lg btn-success" name="drop_index_nuzha" value="Drop Index"></a>
+            </form>
           </div>
         </div>
       <table class="table table-hover table-bordered results">
@@ -123,7 +127,13 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM Perjalanan JOIN supir using (s_id)");
+          $flags=$_SESSION['flag_idx_2'];
+          if(!$flags){
+            $result = mysqli_query($db,"SELECT * FROM perjalanan JOIN supir using (s_id)");
+          }
+          else{
+            $result = mysqli_query($db,"SELECT * FROM perjalanan USE INDEX (index_tgl) JOIN supir using (s_id)");
+          }
           ?>
         <!-- <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">

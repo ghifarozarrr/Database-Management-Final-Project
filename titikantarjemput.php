@@ -216,11 +216,12 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          if(!isset($_SESSION['flag_idx_1'])){
+          $flags=$_SESSION['flag_idx_1'];
+          if(!$flags){
             $result = mysqli_query($db,"SELECT * FROM titik_jemput");
           }
           else{
-           $result = mysqli_query($db,"SELECT * FROM titik_jemput USE INDEX index1"); 
+           $result = mysqli_query($db,"SELECT * FROM titik_jemput USE INDEX (index1)"); 
           }
           ?>
 <!--         <div class="form-group pull-right">
