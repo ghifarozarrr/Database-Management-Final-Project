@@ -114,7 +114,7 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM pembayaran");
+          $result = mysqli_query($db,"SELECT * FROM supir");
           ?>
         <!-- <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -122,12 +122,15 @@
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ID Siswa</th>
-            <th scope="col">Status</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Biaya</th>
-            <th scope="col">Tanggal Bayar</th>
+            <th scope="col">ID Supir</th>
+            <th scope="col">ID Kendaraan</th>
+            <th scope="col">Nama Supir</th>
+            <th scope="col">Telp</th>
+            <th scope="col">Email</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Tanggal Lahir</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Pendapatan</th>
           </tr>
         </thead>
         <tbody>
@@ -136,12 +139,15 @@
               while($row = mysqli_fetch_array($result))
               {
                 echo "<tr>";
-                echo "<td>" . $row['b_id'] . "</td>";
-                echo "<td>" . $row['p_id'] . "</td>";
-                echo "<td>" . $row['b_status'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td>Rp " . $row['b_biaya'] . "</td>";
-                echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo "<td>" . $row['s_id'] . "</td>";
+                echo "<td>" . $row['k_id'] . "</td>";
+                echo "<td>" . $row['s_nama'] . "</td>";
+                echo "<td>" . $row['s_telp'] . "</td>";
+                echo "<td>" . $row['s_email'] . "</td>";
+                echo "<td>" . $row['s_alamat'] . "</td>";
+                echo "<td>" . $row['s_tgllahir'] . "</td>";
+                echo "<td>" . $row['s_gender'] . "</td>";
+                echo "<td>Rp " . $row['s_pendapatan'] . "</td>";
                 echo "</tr>";
               }
               // mysqli_close($db);
