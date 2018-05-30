@@ -161,7 +161,7 @@
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
             <br><br>
-      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="GET">
         <div class="input-group" style="display: flex; justify-content: center;">
           <input id="user" type="text" placeholder="Nama Supir" disabled>
           <select  name="rumah"">
@@ -183,12 +183,22 @@
           </select>
         </div>
         <br>
+        <div class="input-group" style="display: flex; justify-content: center;">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="user" type="number" name="name" placeholder="Bulan">
+        </div>
+        <br>
+        <br>
         <div class="form-group">
           <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Hitung Pengeluaran Bensin</button>      
+            <!-- <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Hitung Pengeluaran Bensin</button>     -->
+            <input type="submit" value="Submit" />  
           </div>
         </div>
       </form>
+
+      
+
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())

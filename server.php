@@ -8,7 +8,7 @@
   $gender = "";
   $alamat = "";
   $rumah = "";
-  $errors = array(); 
+  $errors = array();
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
   if (isset($_POST['reg_user'])) {
     $name = mysqli_real_escape_string($db, $_POST['name']);
