@@ -184,13 +184,15 @@
     </div>
   </div>
 
+
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
       <br><br>
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="GET">
         <div class="input-group" style="display: flex; justify-content: center;">
           <input id="user" type="text" placeholder="Daftar Sekolah" disabled>
-          <select  name="rumah"">
-          <option selected hidden><?php echo $rumah; ?></option>
+          <select name="sekolah"">
+          <option selected hidden></option>
           <?php
             $categorylist_sql1="SELECT DISTINCT tt_deskripsi FROM titik_tujuan";
             $categorylist_query1=mysqli_query($db, $categorylist_sql1);
@@ -210,7 +212,7 @@
         <br><br>
         <div class="form-group">
           <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Lihat Daftar Siswa</button>      
+            <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i>Lihat Daftar Siswa</button>
           </div>
       </form>
 
@@ -220,18 +222,17 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
+          $sekolah = mysqli_real_escape_string($db, $_GET['sekolah']);
+          
+          $result = mysqli_query($db,"SELECT p.p_nama FROM penumpang p JOIN titik_tujuan tt ON tt.tt_id = p.tt_id WHERE tt.tt_deskripsi = '$sekolah'");
           ?>
-<!--         <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div> -->
+
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
             <th scope="col">No</th>
             <th scope="col">Nama Siswa</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Tagihan Biaya</th>
+            <th scope="col">Sekolah</th>
           </tr>
         </thead>
         <tbody>
@@ -243,8 +244,7 @@
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
                 echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $sekolah . "</td>";
                 echo "</tr>";
                 $i++;
               }

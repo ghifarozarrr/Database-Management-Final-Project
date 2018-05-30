@@ -160,11 +160,11 @@
   <div id="Paris" class="w3-container city" style="display:none">
     <div class="container">
       <br><br>
-      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="GET" action=".php">
         <div class="input-group" style="display: flex; justify-content: center;">
           <input id="user" type="text" placeholder="Daerah Titik Jemput" disabled>
-          <select  name="rumah"">
-          <option selected hidden><?php echo $rumah; ?></option>
+          <select  name="jemput">
+          <option selected hidden></option>
           <?php
             $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
             $categorylist_query1=mysqli_query($db, $categorylist_sql1);
@@ -185,8 +185,8 @@
 
         <div class="input-group" style="display: flex; justify-content: center;">
           <input id="user" type="text" placeholder="Daerah Titik Tujuan" disabled>
-          <select  name="rumah"">
-          <option selected hidden><?php echo $rumah; ?></option>
+          <select  name="tujuan">
+          <option selected hidden></option>
           <?php
             $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
             $categorylist_query1=mysqli_query($db, $categorylist_sql1);
@@ -206,7 +206,7 @@
         <br><br>
         <div class="form-group">
           <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Hitung Rata-Rata Perjalanan</button>      
+            <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i>Hitung Rata-Rata Perjalanan</button>      
           </div>
         </div>
       </form>
@@ -217,7 +217,11 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
+
+          $tujuan = mysqli_real_escape_string($db, $_GET['tujuan']);
+          $jemput = mysqli_real_escape_string($db, $_GET['jemput']);
+
+          $result = mysqli_query($db,"SELECT AVG(b.b_biaya) AS rata, tt.tt_daerah, tj.tj_daerah FROM titik_tujuan tt JOIN penumpang p ON tt.tt_id=p.tt_id JOIN titik_jemput tj ON tj.tj_id=p.tj_id JOIN pembayaran b ON b.p_id=p.p_id WHERE tt.tt_daerah='$tujuan' AND tj.tj_daerah='$jemput'");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -239,9 +243,9 @@
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['rata'] . "</td>";
+                echo "<td>" . $row['tj_daerah'] . "</td>";
+                echo "<td> Rp " . $row['tt_daerah'] . "</td>";
                 echo "</tr>";
                 $i++;
               }
