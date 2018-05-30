@@ -56,9 +56,6 @@
       header('location: reg2.php');
     }
   }
-  if (isset($_POST['backReg'])){
-    header('location: register.php');
-  }
   if (isset($_POST['reg2_user'])) {
     $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);
     if (empty($sekolah)) { array_push($errors, "Sekolah harus diisi!"); }
