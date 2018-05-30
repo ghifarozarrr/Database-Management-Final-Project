@@ -305,9 +305,9 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT tt.`tt_id`, tt.tt_deskripsi
-FROM PENUMPANG p RIGHT JOIN titik_tujuan tt ON p.tt_id = tt.`tt_id`
-WHERE p.`p_id`IS NULL;");
+          $result = mysqli_query($db,"SELECT p_nama, tt_id, tt_deskripsi, tt_daerah
+            FROM penumpang RIGHT JOIN titik_tujuan USING (tt_id)
+            ORDER BY p_nama");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -316,9 +316,10 @@ WHERE p.`p_id`IS NULL;");
         <thead class="thead-dark">
           <tr>
             <th scope="col">No</th>
+            <th scope="col">Nama Siswa</th>
             <th scope="col">ID Titik Tujuan</th>
             <th scope="col">Nama Sekolah</th>
-            <!-- <th scope="col">Tagihan Biaya</th> -->
+            <th scope="col">Nama Daerah</th>
           </tr>
         </thead>
         <tbody>
@@ -329,9 +330,10 @@ WHERE p.`p_id`IS NULL;");
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['p_nama'] . "</td>";
                 echo "<td>" . $row['tt_id'] . "</td>";
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
-                // echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['tt_daerah'] . "</td>";
                 echo "</tr>";
                 $i++;
               }
