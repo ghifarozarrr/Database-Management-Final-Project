@@ -1,4 +1,5 @@
-<?php include('server.php') ?>
+<?php include('server.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,8 +92,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-12 controls" style="clear: both;">
-                                <button type="submit" class="btn btn-primary" name="backReg"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+                            <div class="col-sm-12 controls" style="display: flex;justify-content: center;">
                                 <button type="submit" class="btn btn-primary pull-right" name="reg2_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-check"></i> Register</button>
                             </div>
                             <br>

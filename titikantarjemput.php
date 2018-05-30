@@ -212,7 +212,7 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT penumpang.`p_nama`, pembayaran.`b_bulan`, pembayaran.`b_biaya` FROM pembayaran, penumpang WHERE pembayaran.`p_id` = penumpang.`p_id` AND pembayaran.`b_status` = '-' ORDER BY penumpang.`p_nama` ASC");
+          $result = mysqli_query($db,"SELECT * FROM titik_jemput");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -220,25 +220,21 @@
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">No</th>
-            <th scope="col">Nama Siswa</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Tagihan Biaya</th>
+            <th scope="col">ID Titik Jemput</th>
+            <th scope="col">Alamat Titik Jemput</th>
+            <th scope="col">Daerah</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php
-              $i = 1;
               while($row = mysqli_fetch_array($result))
               {
                 echo "<tr>";
-                echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['tj_id'] . "</td>";
+                echo "<td>" . $row['tj_alamat'] . "</td>";
+                echo "<td>" . $row['tj_daerah'] . "</td>";
                 echo "</tr>";
-                $i++;
               }
               // mysqli_close($db);
             ?>
@@ -268,13 +264,14 @@
             <th scope="col">No</th>
             <th scope="col">Nama Daerah</th>
             <th scope="col">Jumlah Penumpang</th>
+            <th scope="col">Titik</th>
             <!-- <th scope="col">Tagihan Biaya</th> -->
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php
-              $i = 1;
+            $i=1;
               while($row = mysqli_fetch_array($result))
               {
                 echo "<tr>";
@@ -283,8 +280,8 @@
                 echo "<td>" . $row['jumlah'] . "</td>";
                 // echo "<td> Rp " . $row['b_biaya'] . "</td>";
                 echo "</tr>";
-                $i++;
               }
+              $i++;
               // mysqli_close($db);
             ?>
           </tr>
@@ -308,9 +305,9 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT tt.`tt_id`, tt.tt_deskripsi
-FROM PENUMPANG p RIGHT JOIN titik_tujuan tt ON p.tt_id = tt.`tt_id`
-WHERE p.`p_id`IS NULL;");
+          $result = mysqli_query($db,"SELECT p_nama, tt_id, tt_deskripsi, tt_daerah
+            FROM penumpang RIGHT JOIN titik_tujuan USING (tt_id)
+            ORDER BY p_nama");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -319,9 +316,10 @@ WHERE p.`p_id`IS NULL;");
         <thead class="thead-dark">
           <tr>
             <th scope="col">No</th>
+            <th scope="col">Nama Siswa</th>
             <th scope="col">ID Titik Tujuan</th>
             <th scope="col">Nama Sekolah</th>
-            <!-- <th scope="col">Tagihan Biaya</th> -->
+            <th scope="col">Nama Daerah</th>
           </tr>
         </thead>
         <tbody>
@@ -332,9 +330,10 @@ WHERE p.`p_id`IS NULL;");
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['p_nama'] . "</td>";
                 echo "<td>" . $row['tt_id'] . "</td>";
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
-                // echo "<td> Rp " . $row['b_biaya'] . "</td>";
+                echo "<td>" . $row['tt_daerah'] . "</td>";
                 echo "</tr>";
                 $i++;
               }
