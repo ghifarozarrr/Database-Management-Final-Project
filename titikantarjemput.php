@@ -367,7 +367,7 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT tt_daerah, hitung_sekolah(tt_daerah) AS jml
+          $result = mysqli_query($db,"SELECT DISTINCT tt_daerah, hitung_sekolah(tt_daerah) AS jml
                                       FROM titik_tujuan;");
           ?>
 <!--         <div class="form-group pull-right">
