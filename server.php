@@ -8,6 +8,7 @@
   $gender = "";
   $alamat = "";
   $rumah = "";
+  $flag_idx_1="";
   $errors = array();
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
   if (isset($_POST['procedure_nuzha'])){
@@ -16,6 +17,16 @@
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
     $result = mysqli_query($db,"CALL hapus_tujuan()");
+    header('location.reload()');
+  }
+  if (isset($_POST['index_gisa'])){
+    $flag_idx_1="1";
+    $_SESSION['flag']=$flag;
+    header('location.reload()');
+  }
+  else if (isset($_POST['drop_index_gisa'])){
+    $flag_idx_1="";
+    $_SESSION['flag']=$flag;
     header('location.reload()');
   }
   if (isset($_POST['reg_user'])) {

@@ -200,10 +200,14 @@
       <br>
         <div class="row mb-4">
           <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success">Buat Index</a>
+            <form method="POST" action="titikantarjemput.php">
+              <input type="submit" class="btn btn-lg btn-success" name="index_gisa" value="Buat Index"></a>
+            </form>
           </div>
           <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success">Drop Index</a>
+            <form method="POST" action="titikantarjemput.php">
+              <input type="submit" class="btn btn-lg btn-success" name="drop_index_gisa" value="Drop Index"></a>
+            </form>
           </div>
         </div>
       <table class="table table-hover table-bordered results">
@@ -212,7 +216,12 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM titik_jemput");
+          if(!isset($_SESSION['flag_idx_1'])){
+            $result = mysqli_query($db,"SELECT * FROM titik_jemput");
+          }
+          else{
+           $result = mysqli_query($db,"SELECT * FROM titik_jemput USE INDEX index1"); 
+          }
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -247,13 +256,14 @@
 
 <div id="Mama" class="w3-container city" style="display:none">
     <div class="container">
+      <br>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM tjsering");
+          $result = mysqli_query($db,"SELECT * FROM ttsering");
           ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -264,7 +274,6 @@
             <th scope="col">No</th>
             <th scope="col">Nama Daerah</th>
             <th scope="col">Jumlah Penumpang</th>
-            <th scope="col">Titik</th>
             <!-- <th scope="col">Tagihan Biaya</th> -->
           </tr>
         </thead>
@@ -276,12 +285,13 @@
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['tj_daerah'] . "</td>";
+                echo "<td>" . $row['tt_daerah'] . "</td>";
                 echo "<td>" . $row['jumlah'] . "</td>";
                 // echo "<td> Rp " . $row['b_biaya'] . "</td>";
                 echo "</tr>";
-              }
               $i++;
+              }
+              
               // mysqli_close($db);
             ?>
           </tr>
@@ -299,7 +309,6 @@
             <form method="POST" action="titikantarjemput.php">
               <input type="submit" class="btn btn-lg btn-success" name="procedure_nuzha" value="Hapus Titik Tujuan"></a>
             </form>
-            
           </div>
         </div>
       <table class="table table-hover table-bordered results">
