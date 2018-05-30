@@ -8,8 +8,38 @@
   $gender = "";
   $alamat = "";
   $rumah = "";
+  $flag_idx_1="";
+  $flag_idx_2="";
   $errors = array();
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
+  if (isset($_POST['procedure_nuzha'])){
+    if (mysqli_connect_errno())
+    {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $result = mysqli_query($db,"CALL hapus_tujuan()");
+    header('location.reload()');
+  }
+  if (isset($_POST['index_gisa'])){
+    $flag_idx_1="1";
+    $_SESSION['flag_idx_1']=$flag_idx_1;
+    header('location.reload()');
+  }
+  else if (isset($_POST['drop_index_gisa'])){
+    $flag_idx_1="";
+    $_SESSION['flag_idx_1']=$flag_idx_1;
+    header('location.reload()');
+  }
+  if (isset($_POST['index_nuzha'])){
+    $flag_idx_2="1";
+    $_SESSION['flag_idx_2']=$flag_idx_2;
+    header('location.reload()');
+  }
+  else if (isset($_POST['drop_index_nuzha'])){
+    $flag_idx_2="";
+    $_SESSION['flag_idx_2']=$flag_idx_2;
+    header('location.reload()');
+  }
   if (isset($_POST['reg_user'])) {
     $name = mysqli_real_escape_string($db, $_POST['name']);
     $telp = mysqli_real_escape_string($db, $_POST['telp']);
