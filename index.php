@@ -102,7 +102,7 @@
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="view.php">
+            <a class="portfolio-item d-block mx-auto" href="penumpang.php">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fa fa-search-plus fa-3x"></i>
@@ -112,7 +112,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="function.php">
+            <a class="portfolio-item d-block mx-auto" href="supir.php">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fa fa-search-plus fa-3x"></i>
@@ -122,7 +122,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="trigger.php">
+            <a class="portfolio-item d-block mx-auto" href="kendaraan.php">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fa fa-search-plus fa-3x"></i>
@@ -132,7 +132,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="procedure.php">
+            <a class="portfolio-item d-block mx-auto" href="perjalanan.php">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fa fa-search-plus fa-3x"></i>
@@ -142,7 +142,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="join.php">
+            <a class="portfolio-item d-block mx-auto" href="pembayaran.php">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fa fa-search-plus fa-3x"></i>
@@ -152,7 +152,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="cursor.php">
+            <a class="portfolio-item d-block mx-auto" href="titikantarjemput.php">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fa fa-search-plus fa-3x"></i>
