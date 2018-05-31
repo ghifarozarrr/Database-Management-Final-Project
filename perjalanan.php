@@ -127,7 +127,7 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $flags=$_SESSION['flag_idx_2'];
+          $flags=$_SESSION['flag_idx_2']; 
           if(!$flags){
             $result = mysqli_query($db,"SELECT * FROM perjalanan JOIN supir using (s_id)");
           }

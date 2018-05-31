@@ -12,6 +12,8 @@
   $flag_idx_2="";
   $errors = array();
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
+  $_SESSION['flag_idx_2']=$flag_idx_2;
+  $_SESSION['flag_idx_1']=$flag_idx_1;
   if (isset($_POST['procedure_nuzha'])){
     if (mysqli_connect_errno())
     {
