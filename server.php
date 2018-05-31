@@ -10,12 +10,10 @@
   $rumah = "";
   $flag_idx_1="";
   $flag_idx_2="";
-  $idnya="";
   $errors = array();
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
   $_SESSION['flag_idx_2']=$flag_idx_2;
   $_SESSION['flag_idx_1']=$flag_idx_1;
-  $_SESSION['id'] ="";
   if (isset($_POST['update_user'])){
     if (mysqli_connect_errno())
     {
@@ -33,6 +31,7 @@
     if (empty($alamat)) { array_push($errors, "Alamat harus diisi!"); }
     if (empty($rumah)) { array_push($errors, "Rumah harus diisi!"); }
     if (count($errors) == 0) {
+      $_SESSION['id']=$idnya;
       $_SESSION['gender'] = $gender;
       $_SESSION['telp'] = $telp;
       $_SESSION['alamat'] = $alamat;
@@ -41,6 +40,18 @@
       $_SESSION['success'] = "You are now logged in";
       header('location: updatepenumpang2.php?id=' . $idnya);
     }
+  }
+  if(isset($_POST['delete_nuzha'])){
+    $idnn=$_SESSION['hm'];
+    $jj=mysqli_query($db, "DELETE FROM penumpang WHERE p_id='$idnn'");
+    header('location: penumpang.php');
+  }
+  if(isset($_POST['insert_gisa'])){
+    $sklh=$_POST['sklh'];
+    $almt=$_POST['almt'];
+    $drh=$_POST['drh'];
+    $jj=mysqli_query($db, "INSERT INTO titik_tujuan(tt_deskripsi,tt_alamat,tt_daerah) VALUES('$sklh','$almt','$drh')");
+    header('location: titikantarjemput.php');
   }
   if(isset($_POST['update2_user'])){
     $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);

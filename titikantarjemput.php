@@ -134,16 +134,16 @@
                 </button>
               </div>
             <div class="modal-body">
-              <form>
+              <form method="POST" action="titikantarjemput.php">
                 <div class="form-group">
                   <div class="col-xs-3">
-                      <input class="form-control" id="ex2" type="text" placeholder="Nama Sekolah">
+                      <input class="form-control" id="ex2" type="text" name="sklh" placeholder="Nama Sekolah">
                   </div><br>
                   <div class="col-xs-3">
-                      <input class="form-control" id="ex2" type="text" placeholder="Alamat Sekolah">
+                      <input class="form-control" id="ex2" type="text" name="almt" placeholder="Alamat Sekolah">
                   </div><br>
                   <div class="col-xs-3">
-                      <input class="form-control" id="ex2" type="text" placeholder="Daerah Sekolah">
+                      <input class="form-control" id="ex2" type="text" name="drh" placeholder="Daerah Sekolah">
                       <select style="width: 100%;" name="rumah"">
                             <option selected hidden><?php echo $rumah; ?></option>
                             <?php
@@ -167,7 +167,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary" name="insert_gisa">Save changes</button>
             </div>
           </div>
         </div>
@@ -228,7 +228,7 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM pembayaran");
+          $result = mysqli_query($db,"SELECT * FROM titik_tujuan");
           ?>
         <!-- <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -236,33 +236,33 @@
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ID Siswa</th>
-            <th scope="col">Status</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Biaya</th>
-            <th scope="col">Tanggal Bayar</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
+            <th scope="col">No</th>
+            <th scope="col">ID Titik Tujuan</th>
+            <th scope="col">Sekolah</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Daerah</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php
+            $i=1;
               while($row = mysqli_fetch_array($result))
               {
-                $idd=$row['p_id'];
+                $idd=$row['tt_id'];
                 
                 echo "<tr>";
-                echo "<td>" . $row['b_id'] . "</td>";
-                echo "<td>" . $row['p_id'] . "</td>";
-                echo "<td>" . $row['b_status'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td>Rp " . $row['b_biaya'] . "</td>";
-                echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['tt_id'] . "</td>";
+                echo "<td>" . $row['tt_deskripsi'] . "</td>";
+                echo "<td>" . $row['tt_alamat'] . "</td>";
+                echo "<td>" . $row['tt_daerah'] . "</td>";
                 echo"<td><button class='btn btn-success' data-toggle='modal' data-target='#insert' data-id='$idd'>Update</button></td>";
                 echo"<td><button class='btn btn-danger' data-id='$idd'>Delete</button></td>";
                 echo "</tr>";
+                $i++;
               }
               // mysqli_close($db);
             ?>

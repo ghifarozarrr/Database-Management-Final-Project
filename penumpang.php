@@ -139,7 +139,7 @@
               while($row = mysqli_fetch_array($result))
               {
                 $idd=$row['p_id'];
-             
+                $_SESSION['hm']=$idd;
                 echo "<tr>";
                 echo "<td>" . $row['p_id'] . "</td>";
                 echo "<td>" . $row['p_nama'] . "</td>";
@@ -148,7 +148,9 @@
                 echo "<td>" . $row['tj_daerah'] . "</td>";
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
                 echo"<td><a href='updatepenumpang.php?id=". $idd ."'><button class='btn btn-success' data-id='$idd'>Update</button></a></td>";
-                echo"<td><button class='btn btn-danger' data-id='$idd'>Delete</button></td>";
+                echo"<td><form method='POST' action='penumpang.php'>
+              <input type='submit' class='btn btn-danger' name='delete_nuzha' value='Delete'></a>
+            </form></td>";
                 echo "</tr>";
               }
               // mysqli_close($db);

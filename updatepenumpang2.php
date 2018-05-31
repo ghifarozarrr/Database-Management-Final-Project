@@ -69,7 +69,7 @@
                 <div class="panel-body" >
                     <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="reg2.php">
                         <?php include('errors.php');
-                        $idnya=$_GET['id'];
+                        $idnya=$_SESSION['id'];
                         $_SESSION['id']=$idnya;
                         $categorylist_sql="SELECT tt_deskripsi FROM titik_tujuan JOIN penumpang USING (tt_id) WHERE p_id='$idnya'";
                         $categorylist_query=mysqli_query($db, $categorylist_sql);
