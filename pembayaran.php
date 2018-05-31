@@ -206,21 +206,21 @@
 <div id="Mama" class="w3-container city" style="display:none">
     <div class="container">
       <br><br>
-      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="pembayaran.php">
         <div class="input-group" style="display: flex; justify-content: center;">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Potongan Harga">
+          <input id="user" type="number" name="potongan" value="<?php echo $name; ?>" placeholder="Potongan Harga">
         </div>
         <br>
 
         <div class="input-group" style="display: flex; justify-content: center;">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Jumlah Perjalanan">
+          <input id="user" type="number" name="perjalanan" value="<?php echo $name; ?>" placeholder="Jumlah Perjalanan">
         </div>
         <br><br>
         <div class="form-group">
           <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Beri Potongan Harga</button>      
+            <button type="submit" href="#" class="btn btn-primary pull-right" name="cursor_gisa"><i class="glyphicon glyphicon-log-in"></i>Beri Potongan Harga</button>      
           </div>
         </div>
       </form>

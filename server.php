@@ -78,6 +78,16 @@
     $result = mysqli_query($db,"CALL ex_cursor('$jumlah','$tarif')");
     header('location.reload()');
   }
+  if (isset($_POST['cursor_gisa'])){
+    if (mysqli_connect_errno())
+    {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $potongan=mysqli_real_escape_string($db, $_POST['potongan']);
+    $perjalanan=mysqli_real_escape_string($db, $_POST['perjalanan']);
+    $result = mysqli_query($db,"CALL ex_cursor2('$perjalanan','$potongan')");
+    header('location.reload()');
+  }
   if (isset($_POST['procedure_nuzha'])){
     if (mysqli_connect_errno())
     {
