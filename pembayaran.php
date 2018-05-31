@@ -115,16 +115,13 @@
   <div id="London" class="w3-container city" style="display:none">
     <div class="container">
       <table class="table table-hover table-bordered results">
-         <?php
+        <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
           $result = mysqli_query($db,"SELECT * FROM pembayaran");
-          ?>
-        <!-- <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div> -->
+        ?>
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
@@ -150,7 +147,6 @@
                 echo "<td>" . $row['b_tglbayar'] . "</td>";
                 echo "</tr>";
               }
-              // mysqli_close($db);
             ?>
           </tr>
         </tbody>
@@ -168,9 +164,6 @@
           }
           $result = mysqli_query($db,"SELECT * FROM belum_lunas");
           ?>
-<!--         <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div> -->
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
@@ -194,7 +187,6 @@
                 echo "</tr>";
                 $i++;
               }
-              // mysqli_close($db);
             ?>
           </tr>
         </tbody>

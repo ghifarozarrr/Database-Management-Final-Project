@@ -337,13 +337,13 @@
     <div class="container">
       <br>
       <table class="table table-hover table-bordered results">
-         <?php
+        <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
           $result = mysqli_query($db,"SELECT * FROM ttsering");
-          ?>
+        ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
         </div> -->
@@ -391,7 +391,7 @@
           </div>
         </div>
       <table class="table table-hover table-bordered results">
-         <?php
+        <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -399,10 +399,7 @@
           $result = mysqli_query($db,"SELECT p_nama, tt_id, tt_deskripsi, tt_daerah
             FROM penumpang RIGHT JOIN titik_tujuan USING (tt_id)
             ORDER BY p_nama");
-          ?>
-<!--         <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div> -->
+        ?>
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
@@ -441,14 +438,14 @@
     <div class="container">
       <br>
       <table class="table table-hover table-bordered results">
-         <?php
+        <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
           $result = mysqli_query($db,"SELECT DISTINCT tt_daerah, hitung_sekolah(tt_daerah) AS jml
                                       FROM titik_tujuan;");
-          ?>
+        ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
         </div> -->
