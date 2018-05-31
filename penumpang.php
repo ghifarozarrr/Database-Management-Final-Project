@@ -107,6 +107,7 @@
   <div id="London" class="w3-container city" style="display:none">
     <div class="container">
       <br>
+
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
@@ -146,7 +147,7 @@
                 echo "<td>" . $row['p_gender'] . "</td>";
                 echo "<td>" . $row['tj_daerah'] . "</td>";
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
-                echo"<td><button class='btn btn-success' data-id='$idd'>Update</button></td>";
+                echo"<td><a href='updatepenumpang.php'><button class='btn btn-success' data-id='$idd'>Update</button></a></td>";
                 echo"<td><button class='btn btn-danger' data-id='$idd'>Delete</button></td>";
                 echo "</tr>";
               }
