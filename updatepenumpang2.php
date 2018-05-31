@@ -1,11 +1,14 @@
-<?php include('server.php') ?>
+<?php include('server.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style type="text/css">
         body {
@@ -13,7 +16,7 @@
             font-family: Montserrat;
         }
 
-        #loginbox { 
+        #loginbox {
             margin-top: 30px;
         }
 
@@ -34,7 +37,7 @@
             background-color: transparent;
         }
 
-         .panel-body {
+        .panel-body {
             padding-top: 30px;
             background-color: #F1EBF7;
         }
@@ -54,68 +57,47 @@
 </head>
 <body>
     <div class="container">    
-        <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
             
-            <div class="row" align="center">
+        <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
+            <div class="row">
                 
             </div>
             <div class="panel panel-default" >
                 <div class="panel-heading">
-                    <div class="panel-title text-center"><strong>Update Data Penumpang</strong></div>
+                    <div class="panel-title text-center"><strong>Pilih Sekolah</strong></div>
                 </div>     
 
                 <div class="panel-body" >
-
-                    <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="updatepenumpang.php">
+                    <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="reg2.php">
                         <?php include('errors.php'); ?>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="user" type="text" class="form-control" name="name" value="<?php echo $name; ?>" placeholder="Nama">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="user" type="number" class="form-control" name="telp" value="<?php echo $telp; ?>" placeholder="Telp">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
-                            <input id="user" type="text" class="form-control" placeholder="Jenis Kelamin" disabled>
-                            <select style="width: 100%;" name="gender"">
-                            <option selected hidden><?php echo $gender; ?></option>
-                                <option>L</option>
-                                <option>P</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input id="user" type="text" class="form-control" name="alamat" value="<?php echo $alamat; ?>" placeholder="Alamat Rumah">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                            <input id="user" type="text" class="form-control" placeholder="Daerah" disabled>
-                            <select style="width: 100%;" name="rumah"">
-                            <option selected hidden><?php echo $rumah; ?></option>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                            <input id="user" type="text" class="form-control" placeholder="Sekolah" disabled>
+                            <select style="width: 100%;" name="sekolah"">
                             <?php
-                              $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
-                              $categorylist_query1=mysqli_query($db, $categorylist_sql1);
-                              $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
-                              do{ 
-                            ?>
-                                <option>
-                                    <?php
-                                    echo $categorylist_rs1['tt_daerah'];
-                                    ?>
-                                  </option>
-                                  <?php
-                              } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
+                            $rumah=$_SESSION['rumah'];
+                            $categorylist_sql="SELECT tt_deskripsi FROM titik_tujuan WHERE tt_daerah='$rumah'";
+                            $categorylist_query=mysqli_query($db, $categorylist_sql);
+                            $categorylist_rs=mysqli_fetch_assoc($categorylist_query);
+
+                            do{ ?>
+                              <option>
+                                <?php 
+                                  echo $categorylist_rs['tt_deskripsi']; 
                                 ?>
+                              </option>
+                            <?php
+                            } while($categorylist_rs=mysqli_fetch_assoc($categorylist_query));
+                            ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-log-in"></i> Next</button>                          
+                            <div class="col-sm-12 controls" style="display: flex;justify-content: center;">
+                                <button type="submit" class="btn btn-primary pull-right" name="reg2_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-check"></i>Update Data</button>
                             </div>
                             <br>
                         </div>
+
                     </form>     
 
                 </div>                     
