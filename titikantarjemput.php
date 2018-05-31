@@ -81,7 +81,7 @@
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Log out</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Keluar</strong></a>
               <?php endif ?>
             </li>
           </ul>
@@ -143,7 +143,7 @@
                       <input class="form-control" id="ex2" type="text" name="almt" placeholder="Alamat Sekolah">
                   </div><br>
                   <div class="col-xs-3">
-                      <input class="form-control" id="ex2" type="text" name="drh" placeholder="Daerah Sekolah">
+                      <input class="form-control" id="ex2" type="text" name="drh" placeholder="Daerah Sekolah" disabled="disabled">
                       <select style="width: 100%;" name="rumah"">
                             <option selected hidden><?php echo $rumah; ?></option>
                             <?php
@@ -163,12 +163,13 @@
                             </select>
                   </div><br>
                 </div>
+                <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" name="insert_gisa">Insert</button>
+            </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" name="insert_gisa">Save changes</button>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -177,7 +178,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Insert Data</h5>
+                <h5 class="modal-title" id="myModalLabel">Update Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -192,7 +193,7 @@
                       <input class="form-control" id="ex2" type="text" placeholder="Alamat Sekolah">
                   </div><br>
                   <div class="col-xs-3">
-                      <input class="form-control" id="ex2" type="text" placeholder="Daerah Sekolah">
+                      <input class="form-control" id="ex2" type="text" placeholder="Daerah Sekolah" disabled="disabled">
                       <select style="width: 100%;" name="rumah"">
                             <option selected hidden><?php echo $rumah; ?></option>
                             <?php
@@ -216,7 +217,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary">Update</button>
             </div>
           </div>
         </div>
@@ -259,8 +260,8 @@
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
                 echo "<td>" . $row['tt_alamat'] . "</td>";
                 echo "<td>" . $row['tt_daerah'] . "</td>";
-                echo"<td><button class='btn btn-success' data-toggle='modal' data-target='#insert' data-id='$idd'>Update</button></td>";
-                echo"<td><button class='btn btn-danger' data-id='$idd'>Delete</button></td>";
+                echo"<td><a href='updatett.php?idgisa=". $idd ."'><button class='btn btn-success' data-toggle='modal' data-id='$idd'>Update</button></a></td>";
+                echo"<td><a href='server.php?idgisadelete=". $idd ."'><button class='btn btn-danger' data-id='$idd'>Delete</button></a></td>";
                 echo "</tr>";
                 $i++;
               }

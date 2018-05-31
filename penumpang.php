@@ -79,7 +79,7 @@
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Log out</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Keluar</strong></a>
               <?php endif ?>
             </li>
           </ul>
@@ -148,9 +148,7 @@
                 echo "<td>" . $row['tj_daerah'] . "</td>";
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
                 echo"<td><a href='updatepenumpang.php?id=". $idd ."'><button class='btn btn-success' data-id='$idd'>Update</button></a></td>";
-                echo"<td><form method='POST' action='penumpang.php'>
-              <input type='submit' class='btn btn-danger' name='delete_nuzha' value='Delete'></a>
-            </form></td>";
+                echo"<td><a href='server.php?iddelete=". $idd ."'><button class='btn btn-danger' data-id='$idd'>Delete</button></a></td>";
                 echo "</tr>";
               }
               // mysqli_close($db);

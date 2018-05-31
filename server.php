@@ -31,7 +31,6 @@
     if (empty($alamat)) { array_push($errors, "Alamat harus diisi!"); }
     if (empty($rumah)) { array_push($errors, "Rumah harus diisi!"); }
     if (count($errors) == 0) {
-      $_SESSION['id']=$idnya;
       $_SESSION['gender'] = $gender;
       $_SESSION['telp'] = $telp;
       $_SESSION['alamat'] = $alamat;
@@ -40,17 +39,31 @@
       $_SESSION['success'] = "You are now logged in";
       header('location: updatepenumpang2.php?id=' . $idnya);
     }
+
   }
-  if(isset($_POST['delete_nuzha'])){
-    $idnn=$_SESSION['hm'];
-    $jj=mysqli_query($db, "DELETE FROM penumpang WHERE p_id='$idnn'");
+  if(isset($_GET['iddelete'])){
+    $jj=mysqli_query($db, "DELETE FROM penumpang WHERE p_id=".$_GET['iddelete']);
     header('location: penumpang.php');
+  }
+  if(isset($_GET['idgisadelete'])){
+    $jgj=mysqli_query($db, "DELETE FROM titik_tujuan WHERE tt_id=".$_GET['idgisadelete']);
+    header('location: titikantarjemput.php');
   }
   if(isset($_POST['insert_gisa'])){
     $sklh=$_POST['sklh'];
     $almt=$_POST['almt'];
     $drh=$_POST['drh'];
     $jj=mysqli_query($db, "INSERT INTO titik_tujuan(tt_deskripsi,tt_alamat,tt_daerah) VALUES('$sklh','$almt','$drh')");
+    header('location: titikantarjemput.php');
+  }
+  if(isset($_POST['update_tt'])){
+    $idnya = $_SESSION['id'];
+    if (empty($sklh)) { array_push($errors, "Sekolah harus diisi!"); }
+    if (empty($almt)) { array_push($errors, "Alamat harus diisi!"); }    
+    $sklh=mysqli_real_escape_string($db, $_POST['sklh']);
+    $almt=mysqli_real_escape_string($db, $_POST['almt']);
+    $drh=mysqli_real_escape_string($db, $_POST['drh']);
+    $hhh=mysqli_query($db, "UPDATE titik_tujuan SET tt_deskripsi='$sklh', tt_alamat='$almt', tt_daerah='$drh' WHERE tt_id='$idnya'");
     header('location: titikantarjemput.php');
   }
   if(isset($_POST['update2_user'])){

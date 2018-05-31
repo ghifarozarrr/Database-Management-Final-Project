@@ -1,14 +1,11 @@
-<?php include('server.php');
-?>
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style type="text/css">
         body {
@@ -16,7 +13,7 @@
             font-family: Montserrat;
         }
 
-        #loginbox {
+        #loginbox { 
             margin-top: 30px;
         }
 
@@ -37,7 +34,7 @@
             background-color: transparent;
         }
 
-        .panel-body {
+         .panel-body {
             padding-top: 30px;
             background-color: #F1EBF7;
         }
@@ -57,54 +54,61 @@
 </head>
 <body>
     <div class="container">    
-            
         <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
-            <div class="row">
+            
+            <div class="row" align="center">
                 
             </div>
             <div class="panel panel-default" >
                 <div class="panel-heading">
-                    <div class="panel-title text-center"><strong>Pilih Sekolah</strong></div>
-                </div>
-                <div class="panel-body" >
-                    <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="reg2.php">
-                        <?php include('errors.php');
-                        $idnya=$_GET['id'];
-                        $_SESSION['id']=$idnya;
-                        $categorylist_sql="SELECT tt_deskripsi FROM titik_tujuan JOIN penumpang USING (tt_id) WHERE p_id='$idnya'";
-                        $categorylist_query=mysqli_query($db, $categorylist_sql);
-                        $categorylist_rs=mysqli_fetch_assoc($categorylist_query);
-                         ?>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
-                            <input id="user" type="text" class="form-control" placeholder="Sekolah" disabled>
-                            <select style="width: 100%;" name="sekolah"">
-                            <option selected hidden><?php echo $categorylist_rs['tt_deskripsi']; ?></option>
-                            <?php
-                            
-                            $rumah=$_SESSION['rumah'];
-                            $categorylist_sql="SELECT tt_deskripsi FROM titik_tujuan WHERE tt_daerah='$rumah'";
-                            $categorylist_query=mysqli_query($db, $categorylist_sql);
-                            $categorylist_rs=mysqli_fetch_assoc($categorylist_query);
+                    <div class="panel-title text-center"><strong>Update Data Penumpang</strong></div>
+                </div>     
 
-                            do{ ?>
-                              <option>
-                                <?php 
-                                  echo $categorylist_rs['tt_deskripsi']; 
-                                ?>
-                              </option>
+                <div class="panel-body" >
+
+                    <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="updatepenumpang.php">
+                        <?php include('errors.php');
+                        $idnya=$_GET['idgisa'];
+                        $_SESSION['id']=$idnya;
+                        $k1="SELECT * FROM titik_tujuan WHERE tt_id='$idnya' LIMIT 1";
+                        $k2=mysqli_query($db, $k1);
+                        $k3=mysqli_fetch_assoc($k2);
+                        ?>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="user" type="text" class="form-control" name="sklh" value="<?php echo $k3['tt_deskripsi']; ?>" placeholder="Sekolah">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input id="user" type="text" class="form-control" name="almt" value="<?php echo $k3['tt_alamat']; ?>" placeholder="Alamat">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                            <input id="user" type="text" class="form-control" placeholder="Daerah" disabled>
+                            <select style="width: 100%;" name="drh"">
+                            <option selected hidden><?php echo $k3['tt_daerah']; ?></option>
                             <?php
-                            } while($categorylist_rs=mysqli_fetch_assoc($categorylist_query));
+                              $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
+                              $categorylist_query1=mysqli_query($db, $categorylist_sql1);
+                              $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
+                              do{ 
                             ?>
+                                <option>
+                                    <?php
+                                    echo $categorylist_rs1['tt_daerah'];
+                                    ?>
+                                  </option>
+                                  <?php
+                              } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
+                                ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-12 controls" style="display: flex;justify-content: center;">
-                                <button type="submit" class="btn btn-primary pull-right" name="update2_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-check"></i>Update Data</button>
+                            <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
+                                <button type="submit" href="#" class="btn btn-primary pull-right" name="update_tt" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-log-in"></i> Update</button>                          
                             </div>
                             <br>
                         </div>
-
                     </form>     
 
                 </div>                     

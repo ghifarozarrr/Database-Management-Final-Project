@@ -83,7 +83,7 @@ include('server.php');
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Log out</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Keluar</strong></a>
               <?php endif ?>
             </li>
           </ul>
