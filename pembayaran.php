@@ -263,22 +263,22 @@
 <div id="Lala" class="w3-container city" style="display:none">
     <div class="container">
       <br><br>
-      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action=".php">
+      <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="pembayaran.php">
         <div class="input-group" style="display: flex; justify-content: center;">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Tambahan Harga">
+          <input id="user" type="number" name="harga" value="<?php echo $name; ?>" placeholder="Tambahan Harga">
         </div>
         <br>
 
         <div class="input-group" style="display: flex; justify-content: center;">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="user" type="number" name="name" value="<?php echo $name; ?>" placeholder="Jumlah Penumpang">
+          <input id="user" type="number" name="jumlah" value="<?php echo $name; ?>" placeholder="Jumlah Penumpang">
         </div>
         <br><br>
         <div class="form-group">
-          <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-            <button type="submit" href="#" class="btn btn-primary pull-right" name="login_user"><i class="glyphicon glyphicon-log-in"></i>Tambah Tarif</button>      
-          </div>
+          <form method="POST" action="pembayaran.php">
+              <input type="submit" class="btn btn-lg btn-success" name="cursor_nuzha" value="Tambah Tarif"></a>
+            </form>
         </div>
       </form>
       <table class="table table-hover table-bordered results">
@@ -287,7 +287,7 @@
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM pembayaran");
+          $result = mysqli_query($db,"SELECT * FROM pembayaran join penumpang using (p_id)");
           ?>
         <!-- <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -295,27 +295,23 @@
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ID Siswa</th>
-            <th scope="col">Status</th>
-            <th scope="col">Bulan</th>
+            <th scope="col">No</th>
+            <th scope="col">Nama Siswa</th>
             <th scope="col">Biaya</th>
-            <th scope="col">Tanggal Bayar</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php
+            $i=1;
               while($row = mysqli_fetch_array($result))
               {
                 echo "<tr>";
-                echo "<td>" . $row['b_id'] . "</td>";
-                echo "<td>" . $row['p_id'] . "</td>";
-                echo "<td>" . $row['b_status'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $row['p_nama'] . "</td>";
                 echo "<td>Rp " . $row['b_biaya'] . "</td>";
-                echo "<td>" . $row['b_tglbayar'] . "</td>";
                 echo "</tr>";
+                $i++;
               }
               // mysqli_close($db);
             ?>

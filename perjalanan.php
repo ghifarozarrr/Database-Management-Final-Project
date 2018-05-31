@@ -1,4 +1,6 @@
-<?php include('server.php') ?>
+<?php
+include('server.php');
+?>
 
 <style type="text/css">
 
@@ -199,14 +201,14 @@
           <option selected hidden></option>
           <?php
             $rumah=$_SESSION['jemput'];
-            $categorylist_sql1="SELECT DISTINCT tt_deskripsi FROM titik_tujuan WHERE tt_daerah='$rumah'";
+            $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
             $categorylist_query1=mysqli_query($db, $categorylist_sql1);
             $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
             do{ 
           ?>
           <option>
           <?php
-            echo $categorylist_rs1['tt_deskripsi'];
+            echo $categorylist_rs1['tt_daerah'];
           ?>
           </option>
             <?php
@@ -232,7 +234,7 @@
           $tujuan = mysqli_real_escape_string($db, $_GET['tujuan']);
           $jemput = mysqli_real_escape_string($db, $_GET['jemput']);
 
-          $result = mysqli_query($db,"SELECT AVG(b.b_biaya) AS rata, tt.tt_deskripsi, tj.tj_daerah FROM titik_tujuan tt JOIN penumpang p ON tt.tt_id=p.tt_id JOIN titik_jemput tj ON tj.tj_id=p.tj_id JOIN pembayaran b ON b.p_id=p.p_id WHERE tt.tt_deskripsi='$tujuan' AND tj.tj_daerah='$jemput'");
+          $result = mysqli_query($db,"SELECT AVG(b.b_biaya) AS rata, tt.tt_daerah, tj.tj_daerah FROM titik_tujuan tt JOIN penumpang p ON tt.tt_id=p.tt_id JOIN titik_jemput tj ON tj.tj_id=p.tj_id JOIN pembayaran b ON b.p_id=p.p_id WHERE tt.tt_daerah='$tujuan' AND tj.tj_daerah='$jemput'");
 
           ?>
 <!--         <div class="form-group pull-right">
@@ -242,9 +244,9 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama Siswa</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Tagihan Biaya</th>
+            <th scope="col">Daerah Asal</th>
+            <th scope="col">Daerah Tujuan</th>
+            <th scope="col">Rata-rata Biaya</th>
           </tr>
         </thead>
         <tbody>
@@ -255,9 +257,9 @@
               {
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
-                echo "<td>" . $row['rata'] . "</td>";
                 echo "<td>" . $row['tj_daerah'] . "</td>";
-                echo "<td> Rp " . $row['tt_deskripsi'] . "</td>";
+                echo "<td>" . $row['tt_daerah'] . "</td>";
+                echo "<td> Rp " . $row['rata'] . "</td>";
                 echo "</tr>";
                 $i++;
               }
