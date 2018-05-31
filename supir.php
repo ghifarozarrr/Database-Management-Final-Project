@@ -162,14 +162,14 @@
     <div class="container">
       <br>
       <table class="table table-hover table-bordered results">
-         <?php
+        <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
           $result = mysqli_query($db,"SELECT s_nama, bensin1(s_id) AS bengsin, MONTH(perjalanan.`pj_tanggal`) AS bulan
                                       FROM supir JOIN perjalanan USING (s_id) ORDER BY bulan");
-          ?>
+        ?>
 <!--         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
         </div> -->
