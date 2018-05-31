@@ -107,32 +107,6 @@
   <div id="London" class="w3-container city" style="display:none">
     <div class="container">
       <br>
-        <div class="row mb-4">
-          <div class="col text-center">
-            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#insert">Insert</a>
-          </div>
-        </div>
-
-        <div class="modal fade" id="insert" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Insert Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            <div class="modal-body">
-              <h3>Modal Body</h3>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())

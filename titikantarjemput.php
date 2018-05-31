@@ -134,7 +134,85 @@
                 </button>
               </div>
             <div class="modal-body">
-              <h3>Modal Body</h3>
+              <form>
+                <div class="form-group">
+                  <div class="col-xs-3">
+                      <input class="form-control" id="ex2" type="text" placeholder="Nama Sekolah">
+                  </div><br>
+                  <div class="col-xs-3">
+                      <input class="form-control" id="ex2" type="text" placeholder="Alamat Sekolah">
+                  </div><br>
+                  <div class="col-xs-3">
+                      <input class="form-control" id="ex2" type="text" placeholder="Daerah Sekolah">
+                      <select style="width: 100%;" name="rumah"">
+                            <option selected hidden><?php echo $rumah; ?></option>
+                            <?php
+                              $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
+                              $categorylist_query1=mysqli_query($db, $categorylist_sql1);
+                              $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
+                              do{ 
+                            ?>
+                                <option>
+                                    <?php
+                                    echo $categorylist_rs1['tt_daerah'];
+                                    ?>
+                                  </option>
+                                  <?php
+                              } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
+                                ?>
+                            </select>
+                  </div><br>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Insert Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="col-xs-3">
+                      <input class="form-control" id="ex2" type="text" placeholder="Nama Sekolah">
+                  </div><br>
+                  <div class="col-xs-3">
+                      <input class="form-control" id="ex2" type="text" placeholder="Alamat Sekolah">
+                  </div><br>
+                  <div class="col-xs-3">
+                      <input class="form-control" id="ex2" type="text" placeholder="Daerah Sekolah">
+                      <select style="width: 100%;" name="rumah"">
+                            <option selected hidden><?php echo $rumah; ?></option>
+                            <?php
+                              $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
+                              $categorylist_query1=mysqli_query($db, $categorylist_sql1);
+                              $categorylist_rs1=mysqli_fetch_assoc($categorylist_query1);
+                              do{ 
+                            ?>
+                                <option>
+                                    <?php
+                                    echo $categorylist_rs1['tt_daerah'];
+                                    ?>
+                                  </option>
+                                  <?php
+                              } while($categorylist_rs1=mysqli_fetch_assoc($categorylist_query1));
+                                ?>
+                            </select>
+                  </div><br>
+                </div>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -182,7 +260,7 @@
                 echo "<td>" . $row['b_bulan'] . "</td>";
                 echo "<td>Rp " . $row['b_biaya'] . "</td>";
                 echo "<td>" . $row['b_tglbayar'] . "</td>";
-                echo"<td><button class='btn btn-success' data-id='$idd'>Update</button></td>";
+                echo"<td><button class='btn btn-success' data-toggle='modal' data-target='#insert' data-id='$idd'>Update</button></td>";
                 echo"<td><button class='btn btn-danger' data-id='$idd'>Delete</button></td>";
                 echo "</tr>";
               }

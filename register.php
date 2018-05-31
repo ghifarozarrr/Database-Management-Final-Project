@@ -74,7 +74,7 @@
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="user" type="text" class="form-control" name="telp" value="<?php echo $telp; ?>" placeholder="Telp">
+                            <input id="user" type="number" class="form-control" name="telp" value="<?php echo $telp; ?>" placeholder="Telp">
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
