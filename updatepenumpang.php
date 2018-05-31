@@ -67,33 +67,39 @@
                 <div class="panel-body" >
 
                     <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="updatepenumpang.php">
-                        <?php include('errors.php'); ?>
+                        <?php include('errors.php');
+                        $idnya=$_GET['id'];
+                        $_SESSION['id']=$idnya;
+                        $k1="SELECT * FROM penumpang JOIN titik_jemput USING (tj_id) WHERE p_id='$idnya' LIMIT 1";
+                        $k2=mysqli_query($db, $k1);
+                        $k3=mysqli_fetch_assoc($k2);
+                        ?>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="user" type="text" class="form-control" name="name" value="<?php echo $name; ?>" placeholder="Nama">
+                            <input id="user" type="text" class="form-control" name="name" value="<?php echo $k3['p_nama']; ?>" placeholder="Nama">
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="user" type="number" class="form-control" name="telp" value="<?php echo $telp; ?>" placeholder="Telp">
+                            <input id="user" type="number" class="form-control" name="telp" value="<?php echo $k3['p_telp']; ?>" placeholder="Telp">
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
                             <input id="user" type="text" class="form-control" placeholder="Jenis Kelamin" disabled>
                             <select style="width: 100%;" name="gender"">
-                            <option selected hidden><?php echo $gender; ?></option>
+                            <option selected hidden><?php echo $k3['p_gender']; ?></option>
                                 <option>L</option>
                                 <option>P</option>
                             </select>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                            <input id="user" type="text" class="form-control" name="alamat" value="<?php echo $alamat; ?>" placeholder="Alamat Rumah">
+                            <input id="user" type="text" class="form-control" name="alamat" value="<?php echo $k3['tj_alamat']; ?>" placeholder="Alamat Rumah">
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
                             <input id="user" type="text" class="form-control" placeholder="Daerah" disabled>
                             <select style="width: 100%;" name="rumah"">
-                            <option selected hidden><?php echo $rumah; ?></option>
+                            <option selected hidden><?php echo $k3['tj_daerah']; ?></option>
                             <?php
                               $categorylist_sql1="SELECT DISTINCT tt_daerah FROM titik_tujuan";
                               $categorylist_query1=mysqli_query($db, $categorylist_sql1);
@@ -112,7 +118,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 controls" style="display: flex; justify-content: center;">
-                                <button type="submit" href="#" class="btn btn-primary pull-right" name="reg_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-log-in"></i> Next</button>                          
+                                <button type="submit" href="#" class="btn btn-primary pull-right" name="update_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-log-in"></i> Next</button>                          
                             </div>
                             <br>
                         </div>

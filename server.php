@@ -10,10 +10,64 @@
   $rumah = "";
   $flag_idx_1="";
   $flag_idx_2="";
+  $idnya="";
   $errors = array();
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
   $_SESSION['flag_idx_2']=$flag_idx_2;
   $_SESSION['flag_idx_1']=$flag_idx_1;
+  $_SESSION['idn'] ="";
+  if (isset($_POST['update_user'])){
+    if (mysqli_connect_errno())
+    {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $idnya = $_SESSION['id'];
+    $name = mysqli_real_escape_string($db, $_POST['name']);
+    $telp = mysqli_real_escape_string($db, $_POST['telp']);
+    $gender = mysqli_real_escape_string($db, $_POST['gender']);
+    $alamat = mysqli_real_escape_string($db, $_POST['alamat']);
+    $rumah = mysqli_real_escape_string($db, $_POST['rumah']);
+    if (empty($name)) { array_push($errors, "Nama harus diisi!"); }
+    if (empty($telp)) { array_push($errors, "Telp harus diisi!"); }
+    if (empty($gender)) { array_push($errors, "Gender harus diisi!"); }
+    if (empty($alamat)) { array_push($errors, "Alamat harus diisi!"); }
+    if (empty($rumah)) { array_push($errors, "Rumah harus diisi!"); }
+    if (count($errors) == 0) {
+      $_SESSION['gender'] = $gender;
+      $_SESSION['telp'] = $telp;
+      $_SESSION['alamat'] = $alamat;
+      $_SESSION['name'] = $name;
+      $_SESSION['rumah'] = $rumah;
+      $_SESSION['success'] = "You are now logged in";
+      header('location: updatepenumpang2.php?id=' . $idnya);
+    }
+  }
+  if(isset($_POST['update2_user'])){
+    $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);
+    if (empty($sekolah)) { array_push($errors, "Sekolah harus diisi!"); }
+    if (count($errors) == 0) {
+      $idnya = $_SESSION['idnya'];
+      $name = $_SESSION['name'];
+      $telp = $_SESSION['telp'];
+      $gender = $_SESSION['gender'];
+      $alamat = $_SESSION['alamat'];
+      $rumah = $_SESSION['rumah'];
+      $query1 = "UPDATE titik_jemput JOIN penumpang USING (tj_id) SET tj_alamat='$alamat', tj_daerah='$rumah' WHERE p_id='$idnya'";
+      mysqli_query($db, $query1);
+      $daerah_id = "SELECT tj_id FROM titik_jemput WHERE tj_alamat='$alamat' AND tj_daerah='$rumah' LIMIT 1";
+      $result = mysqli_query($db, $daerah_id);
+      $hasil = mysqli_fetch_assoc($result);
+      $tj_id2 = $hasil['tj_id'];
+      $daerah2_id = "SELECT tt_id FROM titik_tujuan WHERE tt_deskripsi='$sekolah' AND tt_daerah='$rumah' LIMIT 1";
+      $result2 = mysqli_query($db, $daerah2_id);
+      $hasil2 = mysqli_fetch_assoc($result2);
+      $tt_id2 = $hasil2['tt_id'];
+      $query = "UPDATE penumpang SET tt_id='$tt_id2', tj_id='$tj_id2', p_nama='$name', p_telp='$telp', p_gender='$gender' WHERE p_id='$idnya'";
+      mysqli_query($db, $query);
+      $_SESSION['success'] = "You are now logged in";
+      header('location: penumpang.php');
+    }
+  }
   if (isset($_POST['procedure_nuzha'])){
     if (mysqli_connect_errno())
     {

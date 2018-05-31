@@ -65,16 +65,23 @@
             <div class="panel panel-default" >
                 <div class="panel-heading">
                     <div class="panel-title text-center"><strong>Pilih Sekolah</strong></div>
-                </div>     
-
+                </div>
                 <div class="panel-body" >
                     <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="reg2.php">
-                        <?php include('errors.php'); ?>
+                        <?php include('errors.php');
+                        $idnya=$_GET['id'];
+                        $_SESSION['idnya']=$idnya;
+                        $categorylist_sql="SELECT tt_deskripsi FROM titik_tujuan JOIN penumpang USING (tt_id) WHERE p_id='$idnya'";
+                        $categorylist_query=mysqli_query($db, $categorylist_sql);
+                        $categorylist_rs=mysqli_fetch_assoc($categorylist_query);
+                         ?>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
                             <input id="user" type="text" class="form-control" placeholder="Sekolah" disabled>
                             <select style="width: 100%;" name="sekolah"">
+                            <option selected hidden><?php echo $categorylist_rs['tt_deskripsi']; ?></option>
                             <?php
+                            
                             $rumah=$_SESSION['rumah'];
                             $categorylist_sql="SELECT tt_deskripsi FROM titik_tujuan WHERE tt_daerah='$rumah'";
                             $categorylist_query=mysqli_query($db, $categorylist_sql);
@@ -93,7 +100,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 controls" style="display: flex;justify-content: center;">
-                                <button type="submit" class="btn btn-primary pull-right" name="reg2_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-check"></i>Update Data</button>
+                                <button type="submit" class="btn btn-primary pull-right" name="update2_user" style="background-color: #F171A1; border-color: #F171A1;"><i class="glyphicon glyphicon-check"></i>Update Data</button>
                             </div>
                             <br>
                         </div>
