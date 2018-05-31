@@ -167,7 +167,7 @@
         <div class="input-group" style="display: flex; justify-content: center;">
           <input id="user" type="text" placeholder="Daftar Sekolah" disabled>
           <select name="sekolah">
-          <option selected hidden></option>
+          <option selected hidden>SMA Negeri 1</option>
           <?php
             $categorylist_sql1="SELECT DISTINCT tt_deskripsi FROM titik_tujuan";
             $categorylist_query1=mysqli_query($db, $categorylist_sql1);
@@ -199,8 +199,7 @@
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
           $sekolah = mysqli_real_escape_string($db, $_GET['sekolah']);
-
-          $result = mysqli_query($db,"SELECT p.p_nama FROM penumpang p JOIN titik_tujuan tt ON tt.tt_id = p.tt_id WHERE tt.tt_deskripsi = '$sekolah'");
+          $result = mysqli_query($db,"SELECT p_nama, tt_deskripsi FROM penumpang JOIN titik_tujuan USING (tt_id) WHERE tt_deskripsi = '$sekolah'");
           ?>
 
         <span class="counter pull-right"></span>
@@ -220,7 +219,7 @@
                 echo "<tr>";
                 echo "<td>" . $i . "</td>";
                 echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $sekolah . "</td>";
+                echo "<td>" . $row['tt_deskripsi'] . "</td>";
                 echo "</tr>";
                 $i++;
               }

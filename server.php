@@ -46,7 +46,7 @@
     $sekolah = mysqli_real_escape_string($db, $_POST['sekolah']);
     if (empty($sekolah)) { array_push($errors, "Sekolah harus diisi!"); }
     if (count($errors) == 0) {
-      $idnya = $_SESSION['idnya'];
+      $idnya = $_SESSION['id'];
       $name = $_SESSION['name'];
       $telp = $_SESSION['telp'];
       $gender = $_SESSION['gender'];
@@ -67,6 +67,16 @@
       $_SESSION['success'] = "You are now logged in";
       header('location: penumpang.php');
     }
+  }
+  if (isset($_POST['cursor_nuzha'])){
+    if (mysqli_connect_errno())
+    {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $tarif=mysqli_real_escape_string($db, $_POST['harga']);
+    $jumlah=mysqli_real_escape_string($db, $_POST['jumlah']);
+    $result = mysqli_query($db,"CALL ex_cursor('$jumlah','$tarif')");
+    header('location.reload()');
   }
   if (isset($_POST['procedure_nuzha'])){
     if (mysqli_connect_errno())
