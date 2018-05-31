@@ -15,7 +15,7 @@
   $db = mysqli_connect('localhost', 'root', '', 'fp mbd');
   $_SESSION['flag_idx_2']=$flag_idx_2;
   $_SESSION['flag_idx_1']=$flag_idx_1;
-  $_SESSION['idn'] ="";
+  $_SESSION['id'] ="";
   if (isset($_POST['update_user'])){
     if (mysqli_connect_errno())
     {
