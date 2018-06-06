@@ -165,6 +165,7 @@ footer > h1 a {
       </div>
       <div align="center">
         <div align="center" style="background-color: #e64398; height: 60px; width: 800px; border-radius: 0 0 15px 15px; color: white; font-size: 25px; padding-top: 10px;">
+          <span class="entypo-eye"> Tagihan</span>
         </div>
       </div>
     </div>
