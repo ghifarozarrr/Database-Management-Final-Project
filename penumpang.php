@@ -79,7 +79,7 @@
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Log out</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Keluar</strong></a>
               <?php endif ?>
             </li>
           </ul>
@@ -139,7 +139,7 @@
               while($row = mysqli_fetch_array($result))
               {
                 $idd=$row['p_id'];
-             
+                $_SESSION['hm']=$idd;
                 echo "<tr>";
                 echo "<td>" . $row['p_id'] . "</td>";
                 echo "<td>" . $row['p_nama'] . "</td>";
@@ -148,7 +148,7 @@
                 echo "<td>" . $row['tj_daerah'] . "</td>";
                 echo "<td>" . $row['tt_deskripsi'] . "</td>";
                 echo"<td><a href='updatepenumpang.php?id=". $idd ."'><button class='btn btn-success' data-id='$idd'>Update</button></a></td>";
-                echo"<td><button class='btn btn-danger' data-id='$idd'>Delete</button></td>";
+                echo"<td><a href='server.php?iddelete=". $idd ."'><button class='btn btn-danger' data-id='$idd'>Delete</button></a></td>";
                 echo "</tr>";
               }
               // mysqli_close($db);

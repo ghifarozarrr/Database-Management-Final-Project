@@ -288,34 +288,15 @@ p {
         <h2 class="font-weight-light mb-0">Anakmu Anakku Juga</h2>
       </div>
     </header>
-    <section class="tabs">
-  <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
-  <label for="tab-1" class="tab-label-1">Penumpang</label>
-  <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2" />
-  <label for="tab-2" class="tab-label-2">Supir</label>
-  <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3" />
-  <label for="tab-3" class="tab-label-3">Titik Jemput</label>
-  <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4" />
-  <label for="tab-4" class="tab-label-4">Titik Tujuan</label>
-  <input id="tab-5" type="radio" name="radio-set" class="tab-selector-5" />
-  <label for="tab-5" class="tab-label-5">Kendaraan</label>
-  <input id="tab-6" type="radio" name="radio-set" class="tab-selector-6" />
-  <label for="tab-6" class="tab-label-6">Pembayaran</label>
-  <input id="tab-7" type="radio" name="radio-set" class="tab-selector-7" />
-  <label for="tab-7" class="tab-label-7">Perjalanan</label>
-  <input id="tab-8" type="radio" name="radio-set" class="tab-selector-8" />
-  <label for="tab-8" class="tab-label-8">Detail Perjalanan</label>
-  <div class="content">
-    <div class="content-1">
-      <h2>Tabel Penumpang</h2>
-      
+    <br>
+    <h2>Tabel Log Titik Tujuan</h2>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM penumpang");
+          $result = mysqli_query($db,"SELECT * FROM log_titik_tujuan");
           ?>
         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -323,27 +304,31 @@ p {
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nama Siswa</th>
-            <th scope="col">No. Telp</th>
-            <th scope="col">Jenis Kelamin</th>
-            <th scope="col">Titik Tujuan ID</th>
-            <th scope="col">Titik Jemput ID</th>
+            <th scope="col">No</th>
+            <th scope="col">ID Titik Tujuan</th>
+            <th scope="col">Deskripsi</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Daerah</th>
+            <th scope="col">Tanggal</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php
+            $i=1;
               while($row = mysqli_fetch_array($result))
               {
                 echo "<tr>";
-                echo "<td>" . $row['p_id'] . "</td>";
-                echo "<td>" . $row['p_nama'] . "</td>";
-                echo "<td>" . $row['p_telp'] . "</td>";
-                echo "<td>" . $row['p_gender'] . "</td>";
-                echo "<td>" . $row['tj_id'] . "</td>";
+                echo "<td>" . $i . "</td>";
                 echo "<td>" . $row['tt_id'] . "</td>";
+                echo "<td>" . $row['tt_deskripsi'] . "</td>";
+                echo "<td>" . $row['tt_alamat'] . "</td>";
+                echo "<td>" . $row['tt_daerah'] . "</td>";
+                echo "<td>" . $row['tgl_perubahan'] . "</td>";
+                echo "<td>" . $row['status'] . "</td>";
                 echo "</tr>";
+                $i++;
               }
               // mysqli_close($db);
             ?>
@@ -353,14 +338,14 @@ p {
     </div>
 
     <div class="content-2">
-      <h2>Tabel Supir</h2>
+      <h2>Tabel Log Penumpang</h2>
       <table class="table table-hover table-bordered results">
          <?php
           if (mysqli_connect_errno())
           {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
           }
-          $result = mysqli_query($db,"SELECT * FROM supir");
+          $result = mysqli_query($db,"SELECT * FROM log_penumpang");
           ?>
         <div class="form-group pull-right">
           <input type="text" class="search form-control" placeholder="What you looking for?">
@@ -368,281 +353,48 @@ p {
         <span class="counter pull-right"></span>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nama Supir</th>
-            <th scope="col">No. Telp</th>
-           <!--  <th scope="col">E-mail</th> -->
-            <th scope="col">Alamat</th>
-            <th scope="col">Tanggal Lahir</th>
-             <th scope="col">Jenis Kelamin</th>
-            <th scope="col">Kendaraan</th>
-            <th scope="col">Pendapatan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <?php
-              while($row = mysqli_fetch_array($result))
-              {
-                echo "<tr>";
-                echo "<td>" . $row['s_id'] . "</td>";
-                echo "<td>" . $row['s_nama'] . "</td>";
-                echo "<td>" . $row['s_telp'] . "</td>";
-                // echo "<td>" . $row['s_email'] . "</td>";
-                echo "<td>" . $row['s_alamat'] . "</td>";
-                echo "<td>" . $row['s_tgllahir'] . "</td>";
-                echo "<td>" . $row['s_gender'] . "</td>";
-                echo "<td>" . $row['k_id'] . "</td>";
-                echo "<td>" . $row['s_pendapatan'] . "</td>";
-                echo "</tr>";
-              }
-              // mysqli_close($db);
-            ?>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="content-3">
-      <h2>Tabel Titik Jemput</h2>
-         <table class="table table-hover table-bordered results">
-         <?php
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          $result = mysqli_query($db,"SELECT * FROM titik_jemput");
-          ?>
-        <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div>
-        <span class="counter pull-right"></span>
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Alamat</th>
-            <th scope="col">Daerah</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <?php
-              while($row = mysqli_fetch_array($result))
-              {
-                echo "<tr>";
-                echo "<td>" . $row['tj_id'] . "</td>";
-                echo "<td>" . $row['tj_alamat'] . "</td>";
-                echo "<td>" . $row['tj_daerah'] . "</td>";
-                echo "</tr>";
-              }
-              // mysqli_close($db);
-            ?>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="content-4">
-      <h2>Tabel Titik Tujuan</h2>
-		<table class="table table-hover table-bordered results">
-         <?php
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          $result = mysqli_query($db,"SELECT * FROM titik_tujuan");
-          ?>
-        <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div>
-        <span class="counter pull-right"></span>
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Sekolah</th>
-            <th scope="col">Alamat</th>
-            <th scope="col">Daerah</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <?php
-              while($row = mysqli_fetch_array($result))
-              {
-                echo "<tr>";
-                echo "<td>" . $row['tt_id'] . "</td>";
-                echo "<td>" . $row['tt_deskripsi'] . "</td>";
-                echo "<td>" . $row['tt_alamat'] . "</td>";
-                echo "<td>" . $row['tt_daerah'] . "</td>";
-                echo "</tr>";
-              }
-              // mysqli_close($db);
-            ?>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  <div class="content-5">
-      <h2>Tabel Kendaraan</h2>
-        <table class="table table-hover table-bordered results">
-         <?php
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          $result = mysqli_query($db,"SELECT * FROM kendaraan");
-          ?>
-        <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div>
-        <span class="counter pull-right"></span>
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Merk</th>
-            <th scope="col">Warna</th>
-			<th scope="col">Kapasitas</th>
-            <th scope="col">Pelat</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <?php
-              while($row = mysqli_fetch_array($result))
-              {
-                echo "<tr>";
-                echo "<td>" . $row['k_id'] . "</td>";
-                echo "<td>" . $row['k_merk'] . "</td>";
-                echo "<td>" . $row['k_warna'] . "</td>";
-                echo "<td>" . $row['k_kapasitas'] . "</td>";
-                echo "<td>" . $row['k_pelat'] . "</td>";
-                echo "</tr>";
-              }
-              // mysqli_close($db);
-            ?>
-          </tr>
-        </tbody>
-      </table>
-  </div>
-
-  <div class="content-6">
-      <h2>Tabel Pembayaran</h2>
-      <table class="table table-hover table-bordered results">
-         <?php
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          $result = mysqli_query($db,"SELECT * FROM pembayaran");
-          ?>
-        <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div>
-        <span class="counter pull-right"></span>
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ID Siswa</th>
+            <th scope="col">No</th>
+            <th scope="col">ID Penumpang</th>
+            <th scope="col">ID Titik Tujuan</th>
+            <th scope="col">ID Titik Jemput</th>
+            <th scope="col">Nama</th>
+             <th scope="col">Telp</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Tanggal</th>
             <th scope="col">Status</th>
-            <th scope="col">Bulan</th>
-			<th scope="col">Biaya</th>
-            <th scope="col">Tanggal Bayar</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <?php
+            $i=1;
               while($row = mysqli_fetch_array($result))
               {
                 echo "<tr>";
-                echo "<td>" . $row['b_id'] . "</td>";
+                echo "<td>" . $i . "</td>";
                 echo "<td>" . $row['p_id'] . "</td>";
-                echo "<td>" . $row['b_status'] . "</td>";
-                echo "<td>" . $row['b_bulan'] . "</td>";
-                echo "<td>Rp " . $row['b_biaya'] . "</td>";
-                echo "<td>" . $row['b_tglbayar'] . "</td>";
+                echo "<td>" . $row['tt_id'] . "</td>";
+                echo "<td>" . $row['tj_id'] . "</td>";
+                echo "<td>" . $row['p_nama'] . "</td>";
+                echo "<td>" . $row['p_telp'] . "</td>";
+                echo "<td>" . $row['p_gender'] . "</td>";
+                echo "<td>" . $row['p_username'] . "</td>";
+                echo "<td>" . $row['p_email'] . "</td>";
+                echo "<td>" . $row['p_password'] . "</td>";
+                echo "<td>" . $row['tgl_perubahan'] . "</td>";
+                echo "<td>" . $row['status'] . "</td>";
                 echo "</tr>";
+                $i++;
               }
               // mysqli_close($db);
             ?>
           </tr>
         </tbody>
       </table>
-  </div>
-  <div class="content-7">
-      <h2>Tabel Perjalanan</h2>
-      <table class="table table-hover table-bordered results">
-         <?php
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          $result = mysqli_query($db,"SELECT * FROM perjalanan");
-          ?>
-        <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div>
-        <span class="counter pull-right"></span>
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ID Siswa</th>
-   			<th scope="col">Tanggal Perjalanan</th>
-            <th scope="col">Biaya Bensin</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <?php
-              while($row = mysqli_fetch_array($result))
-              {
-                echo "<tr>";
-                echo "<td>" . $row['pj_id'] . "</td>";
-                echo "<td>" . $row['s_id'] . "</td>";
-                echo "<td>" . $row['pj_tanggal'] . "</td>";
-                echo "<td>Rp " . $row['pj_bensin'] . "</td>";
-                echo "</tr>";
-              }
-              // mysqli_close($db);
-            ?>
-          </tr>
-        </tbody>
-      </table>
-  </div>
-  <div class="content-8">
-      <h2>Tabel Detail Perjalanan</h2>
-      <table class="table table-hover table-bordered results">
-         <?php
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          $result = mysqli_query($db,"SELECT * FROM detil_perjalanan");
-          ?>
-        <div class="form-group pull-right">
-          <input type="text" class="search form-control" placeholder="What you looking for?">
-        </div>
-        <span class="counter pull-right"></span>
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID Siswa</th>
-            <th scope="col">ID Perjalanan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <?php
-              while($row = mysqli_fetch_array($result))
-              {
-                echo "<tr>";
-                echo "<td>" . $row['p_id'] . "</td>";
-                echo "<td>" . $row['pj_id'] . "</td>";
-                echo "</tr>";
-              }
-              // mysqli_close($db);
-            ?>
-          </tr>
-        </tbody>
-      </table>
+    </div>
   </div>
   </div>
 </section>

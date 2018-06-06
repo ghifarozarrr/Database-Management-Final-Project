@@ -99,7 +99,7 @@ footer > h1 a {
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <?php  if (isset($_SESSION['username'])) : ?>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Log out</strong></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.php?logout='1'" style="color: #FFB85C !important;"><strong>Keluar</strong></a>
               <?php endif ?>
             </li>
           </ul>
@@ -150,16 +150,22 @@ footer > h1 a {
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
             <span class="entypo-address"> <?php echo $q3['tt_alamat'] . ", " . $q3['tt_daerah']; ?></span>
           </div>
+          <?php
+          $k4 = "SELECT * FROM supir JOIN kendaraan USING (k_id) WHERE s_id='1' LIMIT 1";
+        $k5 =mysqli_query($db, $k4);
+        $k6=mysqli_fetch_assoc($k5);
+          ?>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-user"> <?php echo $k3['s_nama']; ?></span>
+            <span class="entypo-user"> <?php echo $k6['s_nama']; ?></span>
           </div>
           <div style="color: #ea9b25; font-size: 1em; font-family: "varela round", sans-serif;">
-            <span class="entypo-key"> <?php echo $k3['k_nama'] . " " . $k3['k_warna'] . " " . $k3['k_pelat']; ?></span>
+            <span class="entypo-key"> <?php echo $k6['k_merk'] . " " . $k6['k_warna'] . " " . $k6['k_pelat']; ?></span>
           </div>
         </div>
       </div>
       <div align="center">
         <div align="center" style="background-color: #e64398; height: 60px; width: 800px; border-radius: 0 0 15px 15px; color: white; font-size: 25px; padding-top: 10px;">
+          <span class="entypo-eye"> Tagihan</span>
         </div>
       </div>
     </div>
